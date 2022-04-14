@@ -3,12 +3,10 @@ package com.vsu.visual.drawers;
 import com.vsu.model.TileType;
 import com.vsu.model.grid.Grid;
 import com.vsu.visual.VisualData;
-import javafx.scene.Camera;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -17,6 +15,7 @@ public class GameDrawer implements Drawer {
     VisualData data;
 
     //TODO: 48 скорее всего размер картинки
+    //TODO: доставать картинки из ViewConfig
     public void draw() {
         Canvas canvas = new Canvas(grid.getColSize() * 48, grid.getRowSize() * 48);
         for (int i = 0; i < grid.getRowSize(); i++) {
