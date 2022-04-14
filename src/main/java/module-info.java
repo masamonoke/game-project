@@ -3,7 +3,7 @@ module com.vsu.gameproject {
     requires javafx.fxml;
 
 
-    opens com.vsu.gameproject to javafx.fxml;
-    exports com.vsu.gameproject;
+    opens com.vsu to javafx.fxml;
+    exports com.vsu;
     requires lombok;
 }

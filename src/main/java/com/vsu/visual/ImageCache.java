@@ -1,4 +1,4 @@
-package com.vsu.gameproject.view;
+package com.vsu.visual;
 
 import javafx.scene.image.Image;
 
