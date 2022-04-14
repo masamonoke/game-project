@@ -1,4 +1,4 @@
-package com.vsu.maze_generation.dungeon;
+package com.vsu.model;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

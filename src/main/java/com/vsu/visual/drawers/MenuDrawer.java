@@ -13,18 +13,20 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 @RequiredArgsConstructor
-public class MenuDrawer implements Drawer {
-    @NonNull
-    private VisualData data;
+public class MenuDrawer extends Drawer {
     private Pane currentPane;
 
+    public MenuDrawer(VisualData data) {
+        super(data);
+    }
+
+    @Override
     public void draw() {
         Background background = new Background(
                 new BackgroundImage(data.getImageCache().getImageByPath("/img/menu/menuStatic.png"),
@@ -68,16 +70,16 @@ public class MenuDrawer implements Drawer {
     }
 
     ViewController controller = new ViewController();
-    Grid grid = new Grid(ViewConfig.getINSTANCE().getRowCount(), ViewConfig.getINSTANCE().getColCount());
     //TODO: переделать под относительное расположение
     private void initButtons() {
         Button startButton = new Button();
         drawButton(startButton, data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOn.png"),
                 data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOff.png"), 250, 200);
         startButton.onActionProperty().set(actionEvent -> {
-            //TODO: start game
-            controller.generateMaze(MazeGenAlgorithms.Backtracking, grid);
-            GameDrawer drawer = new GameDrawer(grid, data);
+            //controller.generateMaze(MazeGenAlgorithms.Backtracking, data.getGrid());
+            //TODO: заменить на закомментированный варик
+            controller.fillWithPavements(data.getGrid());
+            GameDrawer drawer = new GameDrawer(data);
             drawer.draw();
         });
         Button settingsButton = new Button();

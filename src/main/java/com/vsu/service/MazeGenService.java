@@ -1,6 +1,6 @@
 package com.vsu.service;
 
-import static com.vsu.maze_generation.dungeon.Direction2D.*;
+import static com.vsu.model.Direction2D.*;
 
 public class MazeGenService {
     public static Position getVector2ByDirection(Position pos, Position direction, int rowCount, int colCount) {
