@@ -1,7 +1,6 @@
 package com.vsu.visual;
 
-import com.vsu.model.Direction2D;
-import com.vsu.model.TileType;
+
 import com.vsu.model.grid.Grid;
 import com.vsu.visual.drawers.CharacterDrawer;
 import com.vsu.visual.drawers.Direction;
@@ -16,6 +15,7 @@ import static com.vsu.model.Direction2D.*;
 public class CharacterMovement {
     VisualData data;
 
+    //TODO:зачем здесь камера,если на есть в data? (С)
     public Button apply(Grid grid, Camera camera, Canvas canvas, CharacterDrawer drawer) {
         Button control = new Button();
         control.setOnKeyPressed(keyEvent -> {
@@ -41,6 +41,9 @@ public class CharacterMovement {
                 }
             }
             if (direction != null) {
+                data.getCamera().setLayoutX(-350 + newPos.col * data.getTileSize());
+                data.getCamera().setLayoutY(-300 + newPos.row * data.getTileSize());
+                data.getCharacter().setPos(newPos);
                 drawer.redraw(canvas, direction);
             }
         });

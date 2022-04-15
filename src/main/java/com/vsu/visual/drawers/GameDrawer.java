@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 public class GameDrawer extends Drawer {
     VisualData data;
 
-    //TODO: 48 скорее всего размер картинки
+    //TODO: 48 скорее всего размер картинки (+)
     //TODO: доставать картинки из ViewConfig
     @Override
     public void draw() {
@@ -35,7 +35,7 @@ public class GameDrawer extends Drawer {
         }
         data.setCurrentPane(new Pane(canvas));
         data.setCamera(new PerspectiveCamera());
-        //TODO: 700 и 600 достать из глобального конфига
+
         Canvas charCanvas = new Canvas(50, 50);
         data.setCharacterCanvas(charCanvas);
         data.getCurrentPane().getChildren().add(charCanvas);

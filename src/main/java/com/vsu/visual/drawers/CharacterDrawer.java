@@ -5,7 +5,6 @@ import com.vsu.visual.CharacterMovement;
 import com.vsu.visual.VisualData;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
-import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -23,10 +22,11 @@ public class CharacterDrawer extends Drawer {
 
     @Override
     public void draw() {
-        //TODO: что это за значения - (-350) и (-300)?
-        data.getCamera().setLayoutX(-350 + character.getPos().row * data.getTileSize());
-        data.getCamera().setLayoutY(-300 + character.getPos().col * data.getTileSize());
-        redraw(data.getCharacterCanvas(), Direction.East);
+        //TODO: что это за значения - (-350) и (-300) ?
+        //TODO: половинные размеры сцены для отцентрирования камеры (С)
+        data.getCamera().setLayoutX(-350 + character.getPos().col * data.getTileSize());
+        data.getCamera().setLayoutY(-300 + character.getPos().row * data.getTileSize());
+        redraw(data.getCharacterCanvas(),Direction.East);
         if (!isMovementApplied) {
             CharacterMovement movement = new CharacterMovement(data);
             Button button = movement.apply(data.getGrid(), data.getCamera(), data.getCharacterCanvas(), this);
@@ -37,7 +37,6 @@ public class CharacterDrawer extends Drawer {
 
     //TODO: заменить магические числа на значения из конфига
     public void redraw(Canvas canvas, Direction direction) {
-
         canvas.getGraphicsContext2D().clearRect(0, 0, 50, 50);
         switch (direction) {
             case North -> {
@@ -57,8 +56,7 @@ public class CharacterDrawer extends Drawer {
                         10, 0);
             }
         }
-        canvas.setLayoutX(character.getPos().row * data.getTileSize());
-        canvas.setLayoutY(character.getPos().col * data.getTileSize());
-
+        canvas.setLayoutX(character.getPos().col * data.getTileSize());
+        canvas.setLayoutY(character.getPos().row * data.getTileSize());
     }
 }

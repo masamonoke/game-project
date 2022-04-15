@@ -33,6 +33,8 @@ public class ViewConfig {
 
         rowCount = 39;
         colCount = 39;
+
+        //TODO: Это размеры сцены? (С)
         width = 700;
         height = 600;
     }
