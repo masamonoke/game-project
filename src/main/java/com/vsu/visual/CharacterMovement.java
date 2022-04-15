@@ -13,14 +13,12 @@ import static com.vsu.model.Direction2D.*;
 @AllArgsConstructor
 public class CharacterMovement {
     private VisualData data;
-
     public Button apply(Canvas canvas, CharacterDrawer drawer) {
         Button control = new Button();
         control.setOnKeyPressed(keyEvent -> {
             Direction direction = null;
             Position pos = new Position(data.getCharacter().getPos().row, data.getCharacter().getPos().col);
             Position newPos = null;
-            //TODO:нужна обработка коллизий со стенкой (С)
             switch (keyEvent.getCode()) {
                 case A -> {
                     direction = Direction.West;
@@ -43,9 +41,9 @@ public class CharacterMovement {
                     !data.getGrid().getMatrix()[newPos.row][newPos.col].getType().equals(TileType.Wall)
             ) {
                 data.getCamera()
-                        .setLayoutX((-ViewConfig.getINSTANCE().getWindowWidth() >> 1) + newPos.col * data.getTileSize());
+                        .setLayoutX((-data.getWindowWidth() >> 1) + newPos.col * data.getTileSize());
                 data.getCamera()
-                        .setLayoutY((-ViewConfig.getINSTANCE().getWindowHeight() >> 1) + newPos.row * data.getTileSize());
+                        .setLayoutY((-data.getWindowHeight() >> 1) + newPos.row * data.getTileSize());
                 data.getCharacter().setPos(newPos);
                 drawer.redraw(canvas, direction);
                 logger.info("Character now is on " + data.getGrid().getMatrix()[newPos.row][newPos.col] + " tile");

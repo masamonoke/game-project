@@ -12,10 +12,6 @@ import lombok.*;
 @Getter
 @Setter
 public class VisualData {
-
-    //TODO нужно делать что-то с ImageCache, добавил его в конфиг
-    @NonNull
-    private final ImageCache imageCache;
     @NonNull
     private final Stage stage;
     @NonNull
@@ -24,6 +20,11 @@ public class VisualData {
     private Pane currentPane;
     //TODO: задавать это значение из конструктора
     private int tileSize = 48;
+    private int characterSize = 48;
+    private int windowWidth = 700;
+    private int windowHeight = 600;
+
     private Canvas characterCanvas;
     private Character character;
+
 }
