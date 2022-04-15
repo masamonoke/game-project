@@ -40,8 +40,8 @@ public class ViewConfig {
         tileTypeColorMap.put(TileType.Swamp, Color.PALEVIOLETRED);
         tileTypeColorMap.put(TileType.Forest, Color.GREENYELLOW);
 
-        mapRowCount = 39;
-        mapColCount = 39;
+        mapRowCount = 119;
+        mapColCount = 119;
 
         windowWidth = 700;
         windowHeight = 600;
