@@ -17,7 +17,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         PropertyConfigurator.configure(getClass().getResource("/log4j.properties"));
-        VisualData data = new VisualData(new ImageCache(), new Stage(),
+        VisualData data = new VisualData(new Stage(),
                 new Grid(ViewConfig.getINSTANCE().getMapRowCount(), ViewConfig.getINSTANCE().getMapColCount()));
         GameBuilder gameBuilder = new GameBuilder();
         gameBuilder.initGame(data);

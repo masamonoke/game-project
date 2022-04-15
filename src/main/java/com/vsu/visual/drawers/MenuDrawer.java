@@ -29,7 +29,7 @@ public class MenuDrawer extends Drawer {
     @Override
     public void draw() {
         Background background = new Background(
-                new BackgroundImage(data.getImageCache().getImageByPath("/img/menu/menuStatic.png"),
+                new BackgroundImage(ViewConfig.getINSTANCE().getImageCache().getImageByPath("/img/menu/menuStatic.png"),
                         null,
                         null,
                         BackgroundPosition.CENTER,
@@ -39,9 +39,9 @@ public class MenuDrawer extends Drawer {
         currentPane = new Pane(canvas);
         currentPane.setBackground(background);
         //TODO:  переделать под относительное расположение
-        drawGif(data.getImageCache().getImageByPath("/img/menu/eye.gif"), 75, 90);
-        drawGif(data.getImageCache().getImageByPath("/img/menu/monster.gif"), 60, 435);
-        drawTitle(canvas, data.getImageCache().getImageByPath("/img/menu/gametitle.png"));
+        drawGif(ViewConfig.getINSTANCE().getImageCache().getImageByPath("/img/menu/eye.gif"), 75, 90);
+        drawGif(ViewConfig.getINSTANCE().getImageCache().getImageByPath("/img/menu/monster.gif"), 60, 435);
+        drawTitle(canvas, ViewConfig.getINSTANCE().getImageCache().getImageByPath("/img/menu/gametitle.png"));
         initButtons();
         Scene menu = new Scene(currentPane, 700, 600);
         data.getStage().setScene(menu);
@@ -73,8 +73,10 @@ public class MenuDrawer extends Drawer {
     //TODO: переделать под относительное расположение
     private void initButtons() {
         Button startButton = new Button();
-        drawButton(startButton, data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOn.png"),
-                data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOff.png"), 250, 200);
+        drawButton(startButton,ViewConfig.getINSTANCE().getImageCache().getImageByPath
+                        ("/img/menu/buttons/buttonStartOn.png"),
+                ViewConfig.getINSTANCE().getImageCache().getImageByPath
+                        ("/img/menu/buttons/buttonStartOff.png"), 250, 200);
         startButton.onActionProperty().set(actionEvent -> {
             //TODO:Второй тип алгоритма не работает,только BackTracking (С)
             controller.generateMaze(MazeGenAlgorithms.Backtracking, data.getGrid());
@@ -82,14 +84,18 @@ public class MenuDrawer extends Drawer {
             drawer.draw();
         });
         Button settingsButton = new Button();
-        drawButton(settingsButton, data.getImageCache().getImageByPath("/img/menu/buttons/buttonConfOn.png"),
-                data.getImageCache().getImageByPath("/img/menu/buttons/buttonConfOff.png"), 250, 280);
+        drawButton(settingsButton, ViewConfig.getINSTANCE().getImageCache().getImageByPath
+                        ("/img/menu/buttons/buttonConfOn.png"),
+                ViewConfig.getINSTANCE().getImageCache().getImageByPath
+                        ("/img/menu/buttons/buttonConfOff.png"), 250, 280);
         settingsButton.onActionProperty().set(actionEvent -> {
             //TODO: settings page
         });
         Button exitButton = new Button();
-        drawButton(exitButton, data.getImageCache().getImageByPath("/img/menu/buttons/buttonExitOn.png"),
-                data.getImageCache().getImageByPath("/img/menu/buttons/buttonExitOff.png"), 250, 360);
+        drawButton(exitButton, ViewConfig.getINSTANCE().getImageCache().getImageByPath
+                        ("/img/menu/buttons/buttonExitOn.png"),
+                ViewConfig.getINSTANCE().getImageCache().getImageByPath
+                        ("/img/menu/buttons/buttonExitOff.png"), 250, 360);
         exitButton.onActionProperty().set(actionEvent -> {
             System.exit(0);
         });

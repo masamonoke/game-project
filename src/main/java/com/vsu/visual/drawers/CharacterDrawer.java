@@ -41,20 +41,20 @@ public class CharacterDrawer extends Drawer {
         canvas.getGraphicsContext2D().clearRect(0, 0, 50, 50);
         switch (direction) {
             case North -> {
-                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/W.gif"),
-                        10, 0);
+                canvas.getGraphicsContext2D().drawImage(ViewConfig.getINSTANCE().getImageCache()
+                                .getImageByPath("/img/character/W.gif"), 10, 0);
             }
             case South -> {
-                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/S.gif"),
-                        10, 0);
+                canvas.getGraphicsContext2D().drawImage(ViewConfig.getINSTANCE().getImageCache()
+                                .getImageByPath("/img/character/S.gif"), 10, 0);
             }
             case West -> {
-                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/A.gif"),
-                        10, 0);
+                canvas.getGraphicsContext2D().drawImage(ViewConfig.getINSTANCE().getImageCache()
+                                .getImageByPath("/img/character/A.gif"), 10, 0);
             }
             case East -> {
-                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/D.gif"),
-                        10, 0);
+                canvas.getGraphicsContext2D().drawImage(ViewConfig.getINSTANCE().getImageCache()
+                                .getImageByPath("/img/character/D.gif"), 10, 0);
             }
         }
         canvas.setLayoutX(character.getPos().col * data.getTileSize());

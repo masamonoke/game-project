@@ -14,14 +14,12 @@ import static com.vsu.model.Direction2D.*;
 @AllArgsConstructor
 public class CharacterMovement {
     private VisualData data;
-
     public Button apply(Canvas canvas, CharacterDrawer drawer) {
         Button control = new Button();
         control.setOnKeyPressed(keyEvent -> {
             Direction direction = null;
             Position pos = new Position(data.getCharacter().getPos().row, data.getCharacter().getPos().col);
             Position newPos = null;
-            //TODO:нужна обработка коллизий со стенкой (С)
             switch (keyEvent.getCode()) {
                 case A -> {
                     direction = Direction.West;
