@@ -12,6 +12,8 @@ import lombok.*;
 @Getter
 @Setter
 public class VisualData {
+
+    //TODO нужно делать что-то с ImageCache, добавил его в конфиг
     @NonNull
     private final ImageCache imageCache;
     @NonNull

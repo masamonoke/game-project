@@ -1,10 +1,8 @@
 package com.vsu.visual;
 
 
-import com.vsu.model.grid.Grid;
 import com.vsu.visual.drawers.CharacterDrawer;
 import com.vsu.visual.drawers.Direction;
-import javafx.scene.Camera;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import lombok.AllArgsConstructor;
@@ -15,13 +13,14 @@ import static com.vsu.model.Direction2D.*;
 public class CharacterMovement {
     VisualData data;
 
-    //TODO:зачем здесь камера,если на есть в data? (С)
-    public Button apply(Grid grid, Camera camera, Canvas canvas, CharacterDrawer drawer) {
+
+    public Button apply(Canvas canvas, CharacterDrawer drawer) {
         Button control = new Button();
         control.setOnKeyPressed(keyEvent -> {
             Direction direction = null;
             Position pos = new Position(data.getCharacter().getPos().row, data.getCharacter().getPos().col);
             Position newPos = null;
+            //TODO:нужна обработка коллизий со стенкой (С)
             switch (keyEvent.getCode()) {
                 case A -> {
                     direction = Direction.West;
@@ -41,8 +40,8 @@ public class CharacterMovement {
                 }
             }
             if (direction != null) {
-                data.getCamera().setLayoutX(-350 + newPos.col * data.getTileSize());
-                data.getCamera().setLayoutY(-300 + newPos.row * data.getTileSize());
+                data.getCamera().setLayoutX((-ViewConfig.getINSTANCE().getWindowWidth() >> 1) + newPos.col * data.getTileSize());
+                data.getCamera().setLayoutY((-ViewConfig.getINSTANCE().getWindowHeight() >> 1) + newPos.row * data.getTileSize());
                 data.getCharacter().setPos(newPos);
                 drawer.redraw(canvas, direction);
             }

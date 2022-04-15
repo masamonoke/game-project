@@ -76,9 +76,8 @@ public class MenuDrawer extends Drawer {
         drawButton(startButton, data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOn.png"),
                 data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOff.png"), 250, 200);
         startButton.onActionProperty().set(actionEvent -> {
-            //controller.generateMaze(MazeGenAlgorithms.Backtracking, data.getGrid());
-            //TODO: заменить на закомментированный варик
-            controller.fillWithPavements(data.getGrid());
+            //TODO:Второй тип алгоритма не работает,только BackTracking (С)
+            controller.generateMaze(MazeGenAlgorithms.Backtracking, data.getGrid());
             GameDrawer drawer = new GameDrawer(data);
             drawer.draw();
         });

@@ -2,6 +2,7 @@ package com.vsu.visual.drawers;
 
 import com.vsu.model.Character;
 import com.vsu.visual.CharacterMovement;
+import com.vsu.visual.ViewConfig;
 import com.vsu.visual.VisualData;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
@@ -22,20 +23,20 @@ public class CharacterDrawer extends Drawer {
 
     @Override
     public void draw() {
-        //TODO: что это за значения - (-350) и (-300) ?
-        //TODO: половинные размеры сцены для отцентрирования камеры (С)
-        data.getCamera().setLayoutX(-350 + character.getPos().col * data.getTileSize());
-        data.getCamera().setLayoutY(-300 + character.getPos().row * data.getTileSize());
+        data.getCamera().setLayoutX((-ViewConfig.getINSTANCE().getWindowWidth() >> 1) + character.getPos().row * data.getTileSize());
+        data.getCamera().setLayoutY((-ViewConfig.getINSTANCE().getWindowHeight() >> 1) + character.getPos().col * data.getTileSize());
         redraw(data.getCharacterCanvas(),Direction.East);
         if (!isMovementApplied) {
             CharacterMovement movement = new CharacterMovement(data);
-            Button button = movement.apply(data.getGrid(), data.getCamera(), data.getCharacterCanvas(), this);
+            Button button = movement.apply(data.getCharacterCanvas(), this);
             data.getCurrentPane().getChildren().add(button);
             isMovementApplied = true;
         }
     }
 
     //TODO: заменить магические числа на значения из конфига
+    //TODO: это шизо-расположение картинки персонажа относительно холста,
+    // нужно изменить гифки на пропорциональные (С)
     public void redraw(Canvas canvas, Direction direction) {
         canvas.getGraphicsContext2D().clearRect(0, 0, 50, 50);
         switch (direction) {
