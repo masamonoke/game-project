@@ -25,7 +25,7 @@ public class PlaneTopology implements GridTopology {
 
     @Override
     public void initGrid(Grid grid, int rowCount, int columnCount) {
-        grid.setMatrix(rowCount, columnCount);
+        grid.resize(rowCount, columnCount);
         grid.setRowSize(rowCount);
         grid.setColSize(columnCount);
         for (int i = 0; i < grid.getRowSize(); i++) {
