@@ -8,15 +8,21 @@ import com.vsu.visual.drawers.MenuDrawer;
 import com.vsu.visual.VisualData;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 
 public class App extends Application {
+    public static final Logger logger = Logger.getLogger(App.class.getName());
     @Override
     public void start(Stage stage) {
+        PropertyConfigurator.configure(getClass().getResource("/log4j.properties"));
         VisualData data = new VisualData(new ImageCache(), new Stage(),
-                new Grid(ViewConfig.getINSTANCE().getRowCount(), ViewConfig.getINSTANCE().getColCount()));
+                new Grid(ViewConfig.getINSTANCE().getMapRowCount(), ViewConfig.getINSTANCE().getMapColCount()));
         GameBuilder gameBuilder = new GameBuilder();
         gameBuilder.initGame(data);
         MenuDrawer menuDrawer = new MenuDrawer(data);
+        logger.info("App starts");
         menuDrawer.draw();
     }
 

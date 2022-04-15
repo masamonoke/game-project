@@ -6,4 +6,5 @@ module com.vsu.gameproject {
     opens com.vsu to javafx.fxml;
     exports com.vsu;
     requires lombok;
+    requires log4j;
 }

@@ -12,26 +12,25 @@ import java.util.Map;
 public class ViewConfig {
     @Getter
     private static final ViewConfig INSTANCE = new ViewConfig();
-    private Map<TileType, Image> tileTypeImagePathMap;
+    private Map<TileType, Image> tileTypeImageMap;
     //тестовый мап
     private Map<TileType, Color> tileTypeColorMap;
     private final ImageCache imageCache;
-    private final int rowCount;
-    private final int colCount;
+    private final int mapRowCount;
+    private final int mapColCount;
     private final int windowWidth;
     private final int windowHeight;
 
     private ViewConfig() {
         this.imageCache = new ImageCache();
 
-        tileTypeImagePathMap = new HashMap<>();
-        tileTypeImagePathMap.put(TileType.Room, this.imageCache.getImageByPath("/img/underground/room.png"));
-        tileTypeImagePathMap.put(TileType.Lake, this.imageCache.getImageByPath("/img/underground/lake.png"));
-        tileTypeImagePathMap.put(TileType.Wall, this.imageCache.getImageByPath("/img/underground/wall.png"));
-        tileTypeImagePathMap.put(TileType.Pavement, this.imageCache.getImageByPath("/img/underground/pavement.png"));
-        tileTypeImagePathMap.put(TileType.Swamp, this.imageCache.getImageByPath("/img/underground/swamp.png"));
-        tileTypeImagePathMap.put(TileType.Forest, this.imageCache.getImageByPath("/img/underground/forest.png"));
-
+        tileTypeImageMap = new HashMap<>();
+        tileTypeImageMap.put(TileType.Room, this.imageCache.getImageByPath("/img/underground/room.png"));
+        tileTypeImageMap.put(TileType.Lake, this.imageCache.getImageByPath("/img/underground/lake.png"));
+        tileTypeImageMap.put(TileType.Wall, this.imageCache.getImageByPath("/img/underground/wall.png"));
+        tileTypeImageMap.put(TileType.Pavement, this.imageCache.getImageByPath("/img/underground/pavement.png"));
+        tileTypeImageMap.put(TileType.Swamp, this.imageCache.getImageByPath("/img/underground/swamp.png"));
+        tileTypeImageMap.put(TileType.Forest, this.imageCache.getImageByPath("/img/underground/forest.png"));
 
         tileTypeColorMap = new HashMap<>();
         tileTypeColorMap.put(TileType.Room, Color.PALEGOLDENROD);
@@ -41,8 +40,8 @@ public class ViewConfig {
         tileTypeColorMap.put(TileType.Swamp, Color.PALEVIOLETRED);
         tileTypeColorMap.put(TileType.Forest, Color.GREENYELLOW);
 
-        rowCount = 39;
-        colCount = 39;
+        mapRowCount = 39;
+        mapColCount = 39;
 
         windowWidth = 700;
         windowHeight = 600;

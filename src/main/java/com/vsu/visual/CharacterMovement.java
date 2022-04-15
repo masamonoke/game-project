@@ -7,12 +7,12 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import lombok.AllArgsConstructor;
 
+import static com.vsu.App.logger;
 import static com.vsu.model.Direction2D.*;
 
 @AllArgsConstructor
 public class CharacterMovement {
-    VisualData data;
-
+    private VisualData data;
 
     public Button apply(Canvas canvas, CharacterDrawer drawer) {
         Button control = new Button();
@@ -40,10 +40,13 @@ public class CharacterMovement {
                 }
             }
             if (direction != null) {
-                data.getCamera().setLayoutX((-ViewConfig.getINSTANCE().getWindowWidth() >> 1) + newPos.col * data.getTileSize());
-                data.getCamera().setLayoutY((-ViewConfig.getINSTANCE().getWindowHeight() >> 1) + newPos.row * data.getTileSize());
+                data.getCamera()
+                        .setLayoutX((-ViewConfig.getINSTANCE().getWindowWidth() >> 1) + newPos.col * data.getTileSize());
+                data.getCamera()
+                        .setLayoutY((-ViewConfig.getINSTANCE().getWindowHeight() >> 1) + newPos.row * data.getTileSize());
                 data.getCharacter().setPos(newPos);
                 drawer.redraw(canvas, direction);
+                logger.info("Character now is on " + data.getGrid().getMatrix()[pos.row][pos.col] + " tile");
             }
         });
         return control;
