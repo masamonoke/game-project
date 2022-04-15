@@ -1,8 +1,6 @@
 package com.vsu.visual.drawers;
 
 import com.vsu.maze_generation.MazeGenAlgorithms;
-import com.vsu.model.grid.Grid;
-import com.vsu.visual.ViewConfig;
 import com.vsu.visual.ViewController;
 import com.vsu.visual.VisualData;
 import javafx.geometry.Insets;

@@ -1,6 +1,7 @@
 package com.vsu.visual.drawers;
 
 import com.vsu.model.TileType;
+import com.vsu.service.GameService;
 import com.vsu.visual.ViewConfig;
 import com.vsu.visual.VisualData;
 import javafx.scene.PerspectiveCamera;
@@ -31,6 +32,8 @@ public class GameDrawer extends Drawer {
         Canvas charCanvas = new Canvas(50, 50);
         data.setCharacterCanvas(charCanvas);
         data.getCurrentPane().getChildren().add(charCanvas);
+        GameService gameService = new GameService();
+        data.setCharacter(gameService.initCharacter(data.getGrid()));
         CharacterDrawer drawer = new CharacterDrawer(data, data.getCharacter());
         drawer.draw();
 

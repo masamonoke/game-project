@@ -1,6 +1,5 @@
 package com.vsu.visual;
 
-
 import com.vsu.model.TileType;
 import com.vsu.visual.drawers.CharacterDrawer;
 import com.vsu.visual.drawers.Direction;

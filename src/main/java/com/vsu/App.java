@@ -1,7 +1,7 @@
 package com.vsu;
 
 import com.vsu.model.grid.Grid;
-import com.vsu.visual.GameBuilder;
+import com.vsu.service.GameService;
 import com.vsu.visual.ImageCache;
 import com.vsu.visual.ViewConfig;
 import com.vsu.visual.drawers.MenuDrawer;
@@ -19,8 +19,6 @@ public class App extends Application {
         PropertyConfigurator.configure(getClass().getResource("/log4j.properties"));
         VisualData data = new VisualData(new ImageCache(), new Stage(),
                 new Grid(ViewConfig.getINSTANCE().getMapRowCount(), ViewConfig.getINSTANCE().getMapColCount()));
-        GameBuilder gameBuilder = new GameBuilder();
-        gameBuilder.initGame(data);
         MenuDrawer menuDrawer = new MenuDrawer(data);
         logger.info("App starts");
         menuDrawer.draw();
