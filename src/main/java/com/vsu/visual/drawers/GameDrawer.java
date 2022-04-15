@@ -22,7 +22,7 @@ public class GameDrawer extends Drawer {
             for (int j = 0; j < data.getGrid().getColSize(); j++) {
                 Image image = ViewConfig.getINSTANCE().getTileTypeImageMap().get(data.getGrid().getMatrix()[i][j].getType());
                 canvas.getGraphicsContext2D()
-                        .drawImage(image, i * data.getTileSize(), j * data.getTileSize());
+                        .drawImage(image, j * data.getTileSize(), i * data.getTileSize());
             }
         }
         data.setCurrentPane(new Pane(canvas));

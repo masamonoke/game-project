@@ -1,6 +1,7 @@
 package com.vsu.visual;
 
 
+import com.vsu.model.TileType;
 import com.vsu.visual.drawers.CharacterDrawer;
 import com.vsu.visual.drawers.Direction;
 import javafx.scene.canvas.Canvas;
@@ -39,7 +40,9 @@ public class CharacterMovement {
                     newPos = pos.add(Position.down);
                 }
             }
-            if (direction != null) {
+            if (direction != null &&
+                    !data.getGrid().getMatrix()[newPos.row][newPos.col].getType().equals(TileType.Wall)
+            ) {
                 data.getCamera()
                         .setLayoutX((-ViewConfig.getINSTANCE().getWindowWidth() >> 1) + newPos.col * data.getTileSize());
                 data.getCamera()
@@ -47,6 +50,8 @@ public class CharacterMovement {
                 data.getCharacter().setPos(newPos);
                 drawer.redraw(canvas, direction);
                 logger.info("Character now is on " + data.getGrid().getMatrix()[newPos.row][newPos.col] + " tile");
+            } else {
+                logger.error("Error in " + this.getClass() + "'s method apply()");
             }
         });
         return control;
