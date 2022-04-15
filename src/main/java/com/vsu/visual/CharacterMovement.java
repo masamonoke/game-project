@@ -42,9 +42,9 @@ public class CharacterMovement {
                     !data.getGrid().getMatrix()[newPos.row][newPos.col].getType().equals(TileType.Wall)
             ) {
                 data.getCamera()
-                        .setLayoutX((-ViewConfig.getINSTANCE().getWindowWidth() >> 1) + newPos.col * data.getTileSize());
+                        .setLayoutX((-data.getWindowWidth() >> 1) + newPos.col * data.getTileSize());
                 data.getCamera()
-                        .setLayoutY((-ViewConfig.getINSTANCE().getWindowHeight() >> 1) + newPos.row * data.getTileSize());
+                        .setLayoutY((-data.getWindowHeight() >> 1) + newPos.row * data.getTileSize());
                 data.getCharacter().setPos(newPos);
                 drawer.redraw(canvas, direction);
                 logger.info("Character now is on " + data.getGrid().getMatrix()[newPos.row][newPos.col] + " tile");

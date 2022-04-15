@@ -18,8 +18,6 @@ public class ViewConfig {
     private final ImageCache imageCache;
     private final int mapRowCount;
     private final int mapColCount;
-    private final int windowWidth;
-    private final int windowHeight;
     private ViewConfig() {
         this.imageCache = new ImageCache();
 
@@ -43,9 +41,5 @@ public class ViewConfig {
         //TODO: Вообще  этот блок лучше перенести в data и размер окна и размеры карты можно менять (С)
         mapRowCount = 39;
         mapColCount = 39;
-
-
-        windowWidth = 700;
-        windowHeight = 600;
     }
 }
