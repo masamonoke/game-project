@@ -91,7 +91,7 @@ public class MenuDrawer extends Drawer {
                         ("/img/menu/buttons/buttonConfOn.png"),
                 ViewConfig.getINSTANCE().getImageCache().getImageByPath
                         ("/img/menu/buttons/buttonConfOff.png"),
-                data.getWindowWidth()/2.8, data.getWindowHeight()/2.1);
+                data.getWindowWidth()/2.8, data.getWindowHeight()/2.15);
 
         settingsButton.onActionProperty().set(actionEvent -> {
             //TODO: settings page

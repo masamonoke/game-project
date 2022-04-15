@@ -13,7 +13,7 @@ import static com.vsu.model.Direction2D.*;
 
 public class GameBuilder {
     public void initGame(VisualData data) {
-        initCharacter(data);
+        //    initCharacter(data);
     }
 
     private void initCharacter(VisualData data) {
