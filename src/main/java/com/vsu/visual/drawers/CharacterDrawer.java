@@ -23,8 +23,8 @@ public class CharacterDrawer extends Drawer {
 
     @Override
     public void draw() {
-        data.getCamera().setLayoutX((-data.getWindowWidth() >> 1) + character.getPos().row * data.getTileSize());
-        data.getCamera().setLayoutY((-data.getWindowHeight() >> 1) + character.getPos().col * data.getTileSize());
+        data.getCamera().setLayoutX((-data.getWindowWidth() >> 1) + character.getPos().col * data.getTileSize());
+        data.getCamera().setLayoutY((-data.getWindowHeight() >> 1) + character.getPos().row * data.getTileSize());
         redraw(data.getCharacterCanvas(),Direction.East);
         if (!isMovementApplied) {
             CharacterMovement movement = new CharacterMovement(data);

@@ -39,7 +39,7 @@ public class ViewConfig {
 
         //TODO:Зачем ограничивать?(C)
         //TODO: Вообще  этот блок лучше перенести в data и размер окна и размеры карты можно менять (С)
-        mapRowCount = 39;
-        mapColCount = 39;
+        mapRowCount = 99;
+        mapColCount = 99;
     }
 }

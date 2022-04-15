@@ -81,7 +81,7 @@ public class MenuDrawer extends Drawer {
 
         startButton.onActionProperty().set(actionEvent -> {
             //TODO:Второй тип алгоритма не работает,только BackTracking (С)
-            controller.generateMaze(MazeGenAlgorithms.Backtracking, data.getGrid());
+            controller.generateMaze(MazeGenAlgorithms.RandomWalk, data.getGrid());
             GameDrawer drawer = new GameDrawer(data);
             drawer.draw();
         });
