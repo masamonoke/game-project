@@ -1,7 +1,6 @@
 package com.vsu;
 
 import com.vsu.model.grid.Grid;
-import com.vsu.service.GameService;
 import com.vsu.visual.ImageCache;
 import com.vsu.visual.ViewConfig;
 import com.vsu.visual.drawers.MenuDrawer;
