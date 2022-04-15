@@ -50,8 +50,6 @@ public class CharacterMovement {
                 data.getCharacter().setPos(newPos);
                 drawer.redraw(canvas, direction);
                 logger.info("Character now is on " + data.getGrid().getMatrix()[newPos.row][newPos.col] + " tile");
-            } else {
-                logger.error("Error in " + this.getClass() + "'s method apply()");
             }
         });
         return control;
