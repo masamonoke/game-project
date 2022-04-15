@@ -46,7 +46,7 @@ public class CharacterMovement {
                         .setLayoutY((-ViewConfig.getINSTANCE().getWindowHeight() >> 1) + newPos.row * data.getTileSize());
                 data.getCharacter().setPos(newPos);
                 drawer.redraw(canvas, direction);
-                logger.info("Character now is on " + data.getGrid().getMatrix()[pos.row][pos.col] + " tile");
+                logger.info("Character now is on " + data.getGrid().getMatrix()[newPos.row][newPos.col] + " tile");
             }
         });
         return control;
