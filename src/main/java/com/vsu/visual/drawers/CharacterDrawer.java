@@ -1,7 +1,7 @@
 package com.vsu.visual.drawers;
 
-import com.vsu.model.Character;
-import com.vsu.visual.CharacterMovement;
+import com.vsu.actor.model.Character;
+import com.vsu.visual.CharacterControls;
 import com.vsu.visual.ViewConfig;
 import com.vsu.visual.VisualData;
 import javafx.scene.canvas.Canvas;
@@ -27,7 +27,7 @@ public class CharacterDrawer extends Drawer {
         data.getCamera().setLayoutY((-data.getWindowHeight() >> 1) + character.getPos().row * data.getTileSize());
         redraw(data.getCharacterCanvas(),Direction.East);
         if (!isMovementApplied) {
-            CharacterMovement movement = new CharacterMovement(data);
+            CharacterControls movement = new CharacterControls(data);
             Button button = movement.apply(data.getCharacterCanvas(), this);
             data.getCurrentPane().getChildren().add(button);
             isMovementApplied = true;

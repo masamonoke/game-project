@@ -1,7 +1,7 @@
 package com.vsu.visual;
 
-import com.vsu.model.Character;
-import com.vsu.model.grid.Grid;
+import com.vsu.actor.model.Character;
+import com.vsu.grid.model.Grid;
 import javafx.scene.Camera;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;

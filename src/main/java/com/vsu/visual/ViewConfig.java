@@ -1,6 +1,6 @@
 package com.vsu.visual;
 
-import com.vsu.model.TileType;
+import com.vsu.grid.model.TileType;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import lombok.Getter;

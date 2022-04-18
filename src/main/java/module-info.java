@@ -7,4 +7,5 @@ module com.vsu.gameproject {
     exports com.vsu;
     requires lombok;
     requires log4j;
+    requires tree;
 }

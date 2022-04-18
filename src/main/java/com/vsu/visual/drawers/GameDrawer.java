@@ -1,6 +1,5 @@
 package com.vsu.visual.drawers;
 
-import com.vsu.model.TileType;
 import com.vsu.service.GameService;
 import com.vsu.visual.ViewConfig;
 import com.vsu.visual.VisualData;

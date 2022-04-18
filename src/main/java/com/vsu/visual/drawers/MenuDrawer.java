@@ -1,7 +1,6 @@
 package com.vsu.visual.drawers;
 
-import com.vsu.maze_generation.MazeGenAlgorithms;
-import com.vsu.visual.ViewConfig;
+import com.vsu.grid.maze.MazeGenAlgorithms;
 import com.vsu.visual.ViewController;
 import com.vsu.visual.VisualData;
 import javafx.geometry.Insets;
@@ -28,7 +27,7 @@ public class MenuDrawer extends Drawer {
     @Override
     public void draw() {
         Background background = new Background(
-                new BackgroundImage(ViewConfig.getINSTANCE().getImageCache().getImageByPath("/img/menu/menuStatic.png"),
+                new BackgroundImage(data.getImageCache().getImageByPath("/img/menu/menuStatic.png"),
                         null,
                         null,
                         BackgroundPosition.CENTER,
@@ -38,19 +37,16 @@ public class MenuDrawer extends Drawer {
         currentPane = new Pane(canvas);
         currentPane.setBackground(background);
         //TODO:  переделать под относительное расположение
-        drawGif(ViewConfig.getINSTANCE().getImageCache().getImageByPath("/img/menu/eye.gif"),
-                data.getWindowWidth()/9.3, data.getWindowHeight()/6.7);
-        drawGif(ViewConfig.getINSTANCE().getImageCache().getImageByPath("/img/menu/monster.gif"),
-                data.getWindowWidth()/11.7, data.getWindowHeight()/1.4);
-        drawTitle(canvas, ViewConfig.getINSTANCE().getImageCache().getImageByPath("/img/menu/gameTitle.png"));
+        drawGif(data.getImageCache().getImageByPath("/img/menu/eye.gif"), 75, 90);
+        drawGif(data.getImageCache().getImageByPath("/img/menu/monster.gif"), 60, 435);
+        drawTitle(canvas, data.getImageCache().getImageByPath("/img/menu/gametitle.png"));
         initButtons();
-
-        Scene menu = new Scene(currentPane, data.getWindowWidth(), data.getWindowHeight());
+        Scene menu = new Scene(currentPane, 700, 600);
         data.getStage().setScene(menu);
         data.getStage().show();
     }
 
-    private void drawGif(Image img, double x, double y) {
+    private void drawGif(Image img, int x, int y) {
         ImageView imageView = new ImageView(img);
         currentPane.getChildren().add(imageView);
         imageView.setX(x);
@@ -64,46 +60,34 @@ public class MenuDrawer extends Drawer {
             @Override
             public void run() {
                 gc.setGlobalAlpha(0.02);
-                gc.drawImage(img, data.getWindowWidth()/11.7, data.getWindowHeight()/7.5);
+                //TODO: переделать под относительное расположение
+                gc.drawImage(img, 60, 80);
             }
         };
         timer.schedule(timerTask, 100, 100);
     }
 
     ViewController controller = new ViewController();
+    //TODO: переделать под относительное расположение
     private void initButtons() {
         Button startButton = new Button();
-        drawButton(startButton,ViewConfig.getINSTANCE().getImageCache().getImageByPath
-                        ("/img/menu/buttons/buttonStartOn.png"),
-                ViewConfig.getINSTANCE().getImageCache().getImageByPath
-                        ("/img/menu/buttons/buttonStartOff.png"),
-                data.getWindowWidth()/2.8, data.getWindowHeight()/3.0);
-
+        drawButton(startButton, data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOn.png"),
+                data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOff.png"), 250, 200);
         startButton.onActionProperty().set(actionEvent -> {
             //TODO:Второй тип алгоритма не работает,только BackTracking (С)
             controller.generateMaze(MazeGenAlgorithms.RandomWalk, data.getGrid());
             GameDrawer drawer = new GameDrawer(data);
             drawer.draw();
         });
-
         Button settingsButton = new Button();
-        drawButton(settingsButton, ViewConfig.getINSTANCE().getImageCache().getImageByPath
-                        ("/img/menu/buttons/buttonConfOn.png"),
-                ViewConfig.getINSTANCE().getImageCache().getImageByPath
-                        ("/img/menu/buttons/buttonConfOff.png"),
-                data.getWindowWidth()/2.8, data.getWindowHeight()/2.15);
-
+        drawButton(settingsButton, data.getImageCache().getImageByPath("/img/menu/buttons/buttonConfOn.png"),
+                data.getImageCache().getImageByPath("/img/menu/buttons/buttonConfOff.png"), 250, 280);
         settingsButton.onActionProperty().set(actionEvent -> {
             //TODO: settings page
         });
-
         Button exitButton = new Button();
-        drawButton(exitButton, ViewConfig.getINSTANCE().getImageCache().getImageByPath
-                        ("/img/menu/buttons/buttonExitOn.png"),
-                ViewConfig.getINSTANCE().getImageCache().getImageByPath
-                        ("/img/menu/buttons/buttonExitOff.png"),
-                data.getWindowWidth()/2.8, data.getWindowHeight()/1.7);
-
+        drawButton(exitButton, data.getImageCache().getImageByPath("/img/menu/buttons/buttonExitOn.png"),
+                data.getImageCache().getImageByPath("/img/menu/buttons/buttonExitOff.png"), 250, 360);
         exitButton.onActionProperty().set(actionEvent -> {
             System.exit(0);
         });
@@ -114,14 +98,15 @@ public class MenuDrawer extends Drawer {
     }
 
     //TODO: optimize
-    private void drawButton(Button button, Image onHoverImg, Image unHoverImg, double x, double y) {
+    private void drawButton(Button button, Image onHoverImg, Image unHoverImg, int x, int y) {
         button.setBackground(
                 new Background(new BackgroundImage(unHoverImg, BackgroundRepeat.NO_REPEAT,
                         BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         button.setLayoutX(x);
         button.setLayoutY(y);
         button.setPadding(Insets.EMPTY);
-        button.setPrefSize(data.getWindowWidth()/3.3, data.getWindowHeight()/12.);
+        //TODO: переделать в относительный размер
+        button.setPrefSize(215, 50);
 
         button.setOnMouseEntered(mouseEvent -> {
             button.setBackground(new Background(new BackgroundImage(onHoverImg,
@@ -129,9 +114,7 @@ public class MenuDrawer extends Drawer {
                     BackgroundSize.DEFAULT)));
         });
         button.setOnMouseExited(mouseEvent -> {
-            button.setBackground(new Background(new BackgroundImage(unHoverImg,
-                    BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-                    BackgroundSize.DEFAULT)));
+            button.setBackground(new Background(new BackgroundImage(unHoverImg, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         });
     }
 }
