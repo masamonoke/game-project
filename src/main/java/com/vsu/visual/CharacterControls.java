@@ -1,6 +1,6 @@
 package com.vsu.visual;
 
-import com.vsu.grid.model.TileType;
+import com.vsu.map.model.TileType;
 import com.vsu.visual.drawers.CharacterDrawer;
 import com.vsu.visual.drawers.Direction;
 import javafx.scene.canvas.Canvas;
@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import lombok.AllArgsConstructor;
 
 import static com.vsu.App.logger;
-import static com.vsu.grid.model.Direction2D.*;
+import static com.vsu.map.model.TilemapDirection2D.*;
 
 @AllArgsConstructor
 public class CharacterControls {
@@ -38,7 +38,7 @@ public class CharacterControls {
                 }
             }
             if (direction != null &&
-                    !data.getGrid().getMatrix()[newPos.row][newPos.col].getType().equals(TileType.Wall)
+                    !data.getTilemap().getMatrix()[newPos.row][newPos.col].getType().equals(TileType.Wall)
             ) {
                 data.getCamera()
                         .setLayoutX((-data.getWindowWidth() >> 1) + newPos.col * data.getTileSize());
@@ -46,7 +46,7 @@ public class CharacterControls {
                         .setLayoutY((-data.getWindowHeight() >> 1) + newPos.row * data.getTileSize());
                 data.getCharacter().setPos(newPos);
                 drawer.redraw(canvas, direction);
-                logger.info("Character now is on " + data.getGrid().getMatrix()[newPos.row][newPos.col] + " tile");
+                logger.info("Character now is on " + data.getTilemap().getMatrix()[newPos.row][newPos.col] + " tile");
             }
         });
         return control;

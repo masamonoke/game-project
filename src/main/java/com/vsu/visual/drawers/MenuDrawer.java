@@ -1,6 +1,6 @@
 package com.vsu.visual.drawers;
 
-import com.vsu.grid.maze.MazeGenAlgorithms;
+import com.vsu.map.maze.MazeGenAlgorithms;
 import com.vsu.visual.ViewController;
 import com.vsu.visual.VisualData;
 import javafx.geometry.Insets;
@@ -74,8 +74,7 @@ public class MenuDrawer extends Drawer {
         drawButton(startButton, data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOn.png"),
                 data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOff.png"), 250, 200);
         startButton.onActionProperty().set(actionEvent -> {
-            //TODO:Второй тип алгоритма не работает,только BackTracking (С)
-            controller.generateMaze(MazeGenAlgorithms.RandomWalk, data.getGrid());
+            controller.generateMaze(MazeGenAlgorithms.RandomWalk, data.getTilemap());
             GameDrawer drawer = new GameDrawer(data);
             drawer.draw();
         });
@@ -114,7 +113,8 @@ public class MenuDrawer extends Drawer {
                     BackgroundSize.DEFAULT)));
         });
         button.setOnMouseExited(mouseEvent -> {
-            button.setBackground(new Background(new BackgroundImage(unHoverImg, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+            button.setBackground(new Background(new BackgroundImage(unHoverImg, BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         });
     }
 }

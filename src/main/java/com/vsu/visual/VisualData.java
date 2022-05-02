@@ -1,7 +1,7 @@
 package com.vsu.visual;
 
 import com.vsu.actor.model.Character;
-import com.vsu.grid.model.Grid;
+import com.vsu.map.model.Tilemap;
 import javafx.scene.Camera;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
@@ -15,7 +15,7 @@ public class VisualData {
     @NonNull
     private final Stage stage;
     @NonNull
-    private Grid grid;
+    private Tilemap tilemap;
     private Camera camera;
     private Pane currentPane;
     //TODO: задавать это значение из конструктора

@@ -1,6 +1,6 @@
 package com.vsu;
 
-import com.vsu.grid.model.Grid;
+import com.vsu.map.model.Tilemap;
 import com.vsu.visual.ImageCache;
 import com.vsu.visual.ViewConfig;
 import com.vsu.visual.drawers.MenuDrawer;
@@ -16,8 +16,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         PropertyConfigurator.configure(getClass().getResource("/log4j.properties"));
-        VisualData data = new VisualData(new Stage(),
-                new Grid(ViewConfig.getINSTANCE().getMapRowCount(), ViewConfig.getINSTANCE().getMapColCount()));
+        VisualData data = new VisualData(new ImageCache(), new Stage(),
+                new Tilemap(ViewConfig.getINSTANCE().getMapRowCount(), ViewConfig.getINSTANCE().getMapColCount()));
         MenuDrawer menuDrawer = new MenuDrawer(data);
         logger.info("App starts");
         menuDrawer.draw();

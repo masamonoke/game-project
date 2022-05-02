@@ -1,6 +1,5 @@
 package com.vsu.actor.model;
 
-import com.vsu.actor.movement.combat.DamageArea;
 import lombok.*;
 
 @AllArgsConstructor
@@ -8,11 +7,10 @@ import lombok.*;
 @Getter
 @Setter
 public class Actor {
-    private int hp;
-    private int stamina;
-    private int mana;
-    private int speed;
-    private int damage;
-    private int noise;
-    private DamageArea damageArea;
+    protected int hp;
+    protected int mp;
+    protected int stamina;
+    protected int speed;
+    protected int physicalDamage;
+    protected int magicalDamage;
 }

@@ -1,22 +1,20 @@
 package com.vsu.actor.movement;
 
-import com.vsu.actor.model.Actor;
+import com.vsu.actor.model.ActorMobilityState;
+import com.vsu.actor.model.Character;
+
+import static com.vsu.App.logger;
 
 public class Crouch extends Movement {
-    private Actor actor;
-
     public Crouch() {
         type = MovementType.Crouch;
     }
 
     @Override
-    public Movement move(Movement prev) {
-        if (!(prev.type.equals(MovementType.Attack))) {
-            //TODO: рассчитать от уровня экипировки или задать константы
-            actor.setNoise(actor.getNoise() - 10);
-            actor.setSpeed(actor.getSpeed() - 10);
-            actor.setDamage(actor.getDamage() + 200);
-        }
-        return null;
+    public MovementResult apply(Movement prev, Character character) {
+        logger.info(character + " is crouched");
+        //возможно увеличить урон от определенных типов оружия (кинжалы), пока персонаж находится в этом состоянии
+        movementResult = MovementResult.builder().newActorMobilityState(ActorMobilityState.Crouching).build();
+        return movementResult;
     }
 }

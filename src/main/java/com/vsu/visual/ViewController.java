@@ -1,18 +1,27 @@
 package com.vsu.visual;
 
-import com.vsu.grid.maze.MazeGenAlgorithms;
-import com.vsu.grid.maze.MazeGenerationFactory;
-import com.vsu.grid.maze.MazeGenerationStrategy;
-import com.vsu.grid.model.TileType;
-import com.vsu.grid.model.Grid;
-import com.vsu.grid.GridService;
+import com.vsu.map.maze.MazeGenAlgorithms;
+import com.vsu.map.maze.MazeGenerationFactory;
+import com.vsu.map.maze.MazeGenerationStrategy;
+import com.vsu.map.model.TileType;
+import com.vsu.map.model.Tilemap;
+import com.vsu.map.TilemapService;
 
 public class ViewController {
-    //TODO:почему карта генерируется в визуале? (С)
-    public void generateMaze(MazeGenAlgorithms algorithm, Grid grid) {
+
+    public void generateMaze(MazeGenAlgorithms algorithm, Tilemap tilemap) {
         MazeGenerationFactory mazeGenerationFactory = new MazeGenerationFactory();
         MazeGenerationStrategy strategy = mazeGenerationFactory.getStrategy(algorithm);
-        GridService gridService = new GridService();
-        gridService.generateMaze(grid, strategy);
+        TilemapService tilemapService = new TilemapService();
+        tilemapService.generateMaze(tilemap, strategy);
     }
+
+    public void fillWithPavements(Tilemap tilemap) {
+        for (int i = 0; i < tilemap.getRowSize(); i++) {
+            for (int j = 0; j < tilemap.getColSize(); j++) {
+                tilemap.getMatrix()[i][j].setType(TileType.Pavement);
+            }
+        }
+    }
+
 }

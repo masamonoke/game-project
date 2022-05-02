@@ -1,7 +1,7 @@
 package com.vsu.policy;
 
-import com.vsu.grid.model.Tile;
-import com.vsu.grid.model.TileType;
+import com.vsu.map.model.Tile;
+import com.vsu.map.model.TileType;
 
 public class PassagePolicy {
 

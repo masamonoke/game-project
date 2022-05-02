@@ -1,26 +1,26 @@
 package com.vsu.service;
 
 import com.vsu.actor.model.Character;
-import com.vsu.grid.model.Tile;
-import com.vsu.grid.model.TileType;
-import com.vsu.grid.model.Grid;
+import com.vsu.map.model.Tile;
+import com.vsu.map.model.TileType;
+import com.vsu.map.model.Tilemap;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static com.vsu.grid.model.Direction2D.*;
+import static com.vsu.map.model.TilemapDirection2D.*;
 
 //TODO: implement
 public class GameService {
-    public void initGame(Grid grid) {}
+    public void initGame(Tilemap tilemap) {}
 
-    public Character initCharacter(Grid grid) {
+    public Character initCharacter(Tilemap tilemap) {
         List<Tile> validTiles = new ArrayList<>();
-        for (int i = 0; i < grid.getRowSize(); i++) {
-            for (int j = 0; j < grid.getColSize(); j++) {
-                if (!grid.getMatrix()[i][j].getType().equals(TileType.Wall)) {
-                    validTiles.add(grid.getMatrix()[i][j]);
+        for (int i = 0; i < tilemap.getRowSize(); i++) {
+            for (int j = 0; j < tilemap.getColSize(); j++) {
+                if (!tilemap.getMatrix()[i][j].getType().equals(TileType.Wall)) {
+                    validTiles.add(tilemap.getMatrix()[i][j]);
                 }
             }
         }

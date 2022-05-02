@@ -16,11 +16,11 @@ public class GameDrawer extends Drawer {
 
     @Override
     public void draw() {
-        Canvas canvas = new Canvas(data.getGrid().getColSize() * data.getTileSize(),
-                data.getGrid().getRowSize() * data.getTileSize());
-        for (int i = 0; i < data.getGrid().getRowSize(); i++) {
-            for (int j = 0; j < data.getGrid().getColSize(); j++) {
-                Image image = ViewConfig.getINSTANCE().getTileTypeImageMap().get(data.getGrid().getMatrix()[i][j].getType());
+        Canvas canvas = new Canvas(data.getTilemap().getColSize() * data.getTileSize(),
+                data.getTilemap().getRowSize() * data.getTileSize());
+        for (int i = 0; i < data.getTilemap().getRowSize(); i++) {
+            for (int j = 0; j < data.getTilemap().getColSize(); j++) {
+                Image image = ViewConfig.getINSTANCE().getTileTypeImageMap().get(data.getTilemap().getMatrix()[i][j].getType());
                 canvas.getGraphicsContext2D()
                         .drawImage(image, j * data.getTileSize(), i * data.getTileSize());
             }
@@ -32,7 +32,7 @@ public class GameDrawer extends Drawer {
         data.setCharacterCanvas(charCanvas);
         data.getCurrentPane().getChildren().add(charCanvas);
         GameService gameService = new GameService();
-        data.setCharacter(gameService.initCharacter(data.getGrid()));
+        data.setCharacter(gameService.initCharacter(data.getTilemap()));
         CharacterDrawer drawer = new CharacterDrawer(data, data.getCharacter());
         drawer.draw();
 

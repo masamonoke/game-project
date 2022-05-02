@@ -23,8 +23,10 @@ public class CharacterDrawer extends Drawer {
 
     @Override
     public void draw() {
-        data.getCamera().setLayoutX((-data.getWindowWidth() >> 1) + character.getPos().col * data.getTileSize());
-        data.getCamera().setLayoutY((-data.getWindowHeight() >> 1) + character.getPos().row * data.getTileSize());
+        data.getCamera().setLayoutX((-ViewConfig.getINSTANCE().getWindowWidth() >> 1)
+                + character.getPos().row * data.getTileSize());
+        data.getCamera().setLayoutY((-ViewConfig.getINSTANCE().getWindowHeight() >> 1)
+                + character.getPos().col * data.getTileSize());
         redraw(data.getCharacterCanvas(),Direction.East);
         if (!isMovementApplied) {
             CharacterControls movement = new CharacterControls(data);
@@ -34,25 +36,27 @@ public class CharacterDrawer extends Drawer {
         }
     }
 
-
+    //TODO: заменить магические числа на значения из конфига
+    //TODO: это шизо-расположение картинки персонажа относительно холста,
+    // нужно изменить гифки на пропорциональные (С)
     public void redraw(Canvas canvas, Direction direction) {
-        canvas.getGraphicsContext2D().clearRect(0, 0, data.getCharacterSize(), data.getCharacterSize());
+        canvas.getGraphicsContext2D().clearRect(0, 0, 50, 50);
         switch (direction) {
             case North -> {
-                canvas.getGraphicsContext2D().drawImage(ViewConfig.getINSTANCE().getImageCache()
-                                .getImageByPath("/img/character/W.gif"), 0, 0);
+                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/W.gif"),
+                        10, 0);
             }
             case South -> {
-                canvas.getGraphicsContext2D().drawImage(ViewConfig.getINSTANCE().getImageCache()
-                                .getImageByPath("/img/character/S.gif"), 0, 0);
+                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/S.gif"),
+                        10, 0);
             }
             case West -> {
-                canvas.getGraphicsContext2D().drawImage(ViewConfig.getINSTANCE().getImageCache()
-                                .getImageByPath("/img/character/A.gif"), 0, 0);
+                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/A.gif"),
+                        10, 0);
             }
             case East -> {
-                canvas.getGraphicsContext2D().drawImage(ViewConfig.getINSTANCE().getImageCache()
-                                .getImageByPath("/img/character/D.gif"), 0, 0);
+                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/D.gif"),
+                        10, 0);
             }
         }
         canvas.setLayoutX(character.getPos().col * data.getTileSize());
