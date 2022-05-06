@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class ImageCache {
     private final Map<String, Image> imageMap;
-
+ //Ghjd
     public ImageCache() {
         this.imageMap = new HashMap<>();
     }
