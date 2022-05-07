@@ -13,6 +13,8 @@ import lombok.*;
 @Setter
 public class VisualData {
     @NonNull
+    private ImageCache imageCache;
+    @NonNull
     private final Stage stage;
     @NonNull
     private Tilemap tilemap;
