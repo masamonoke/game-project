@@ -4,7 +4,7 @@ import com.vsu.actor.model.Character;
 import com.vsu.actor.movement.Crouch;
 import com.vsu.actor.movement.Jump;
 import com.vsu.actor.movement.Movement;
-import com.vsu.actor.movement.combat.Action;
+import com.vsu.actor.movement.combat.action.Action;
 import com.vsu.actor.movement.combat.HeavyAttack;
 import com.vsu.actor.movement.combat.LightAttack;
 import com.vsu.utils.TreeNode;
@@ -19,13 +19,15 @@ import static com.vsu.App.logger;
 public class ComboTree {
     private final TreeNode root;
     private TreeNode cur;
-    private String filename;
+    private final String filename;
+    private long time;
 
     public ComboTree() throws IOException {
         root = new TreeNode(null);
         cur = root;
         filename = "src/main/resources/combat/comboset.txt";
         readComboTreeFromFile();
+        time = -1;
     }
 
     public ComboTree(String filename) throws IOException {
@@ -33,39 +35,52 @@ public class ComboTree {
         cur = root;
         this.filename = filename;
         readComboTreeFromFile();
+        time = -1;
     }
 
     public TreeNode traverse(Movement movement, Character character) {
         if (cur == root) {
             logger.info("Starting new combo chain");
         }
+
         TreeNode found;
         if (movement != null) {
             found = cur.find(movement);
         } else {
             return null;
         }
+
+        if (time == -1) {
+            time = System.currentTimeMillis();
+        } else {
+            var timePassed = System.currentTimeMillis() - time;
+            if (timePassed > 2000) {
+                found = null;
+            }
+            time = -1;
+        }
+
         if (found != null) {
             var parent = found.getParent();
             Movement prev = null;
             if (parent != null) {
                 prev = parent.getData();
             }
-            found.getData().apply(prev, character);
+            found.getData().apply(character);
             movement.setPrev(cur.getData());
             if (found.isLeaf()) {
                 cur = root;
-                //вызываем эвент завершения комбо
+                //вызываем эвент завершения комбо или возвращаем особый Movement-финишер
                 logger.info("Combo is finished");
                 return found;
             }
             cur = found;
             return found;
         } else {
-            movement.apply(null, character);
+            movement.apply(character);
             logger.info("Combo chain is interrupted");
             cur = root;
-            return cur;
+            return root;
         }
     }
 

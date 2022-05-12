@@ -1,4 +1,4 @@
-package com.vsu.map;
+package com.vsu.service;
 
 import com.vsu.map.maze.MazeGenerationStrategy;
 import com.vsu.map.model.Tilemap;

@@ -17,7 +17,7 @@ public class CharacterControls {
         Button control = new Button();
         control.setOnKeyPressed(keyEvent -> {
             Direction direction = null;
-            Position pos = new Position(data.getCharacter().getPos().row, data.getCharacter().getPos().col);
+            Position pos = new Position(data.getCharacter().getTilePos().row, data.getCharacter().getTilePos().col);
             Position newPos = null;
             switch (keyEvent.getCode()) {
                 case A -> {
@@ -44,7 +44,7 @@ public class CharacterControls {
                         .setLayoutX((-data.getWindowWidth() >> 1) + newPos.col * data.getTileSize());
                 data.getCamera()
                         .setLayoutY((-data.getWindowHeight() >> 1) + newPos.row * data.getTileSize());
-                data.getCharacter().setPos(newPos);
+                data.getCharacter().setTilePos(newPos);
                 drawer.redraw(canvas, direction);
                 logger.info("Character now is on " + data.getTilemap().getMatrix()[newPos.row][newPos.col] + " tile");
             }

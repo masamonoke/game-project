@@ -11,10 +11,14 @@ public class Crouch extends Movement {
     }
 
     @Override
-    public MovementResult apply(Movement prev, Character character) {
+    public MovementResult apply(Character character) {
         logger.info(character + " is crouched");
         //возможно увеличить урон от определенных типов оружия (кинжалы), пока персонаж находится в этом состоянии
-        movementResult = MovementResult.builder().newActorMobilityState(ActorMobilityState.Crouching).build();
+        movementResult = MovementResult
+                .builder()
+                .newActorMobilityState(ActorMobilityState.Crouching)
+                .damageBonus(character.getPhysicalDamage() * character.getTrickery() & character.getAgility())
+                .build();
         return movementResult;
     }
 }

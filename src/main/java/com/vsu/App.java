@@ -17,7 +17,7 @@ public class App extends Application {
     public void start(Stage stage) {
         PropertyConfigurator.configure(getClass().getResource("/log4j.properties"));
         VisualData data = new VisualData(new ImageCache(), new Stage(),
-                new Tilemap(ViewConfig.getINSTANCE().getMapRowCount(), ViewConfig.getINSTANCE().getMapColCount()));
+                new Tilemap(ViewConfig.getInstance().getMapRowCount(), ViewConfig.getInstance().getMapColCount()));
         MenuDrawer menuDrawer = new MenuDrawer(data);
         logger.info("App starts");
         menuDrawer.draw();

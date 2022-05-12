@@ -13,13 +13,13 @@ public class Jump extends Movement {
     }
 
     @Override
-    public MovementResult apply(Movement prev, Character character) {
+    public MovementResult apply(Character character) {
         //возможно добавить увеличение урона и увеличить область урона
         logger.info(character + " jumped");
         movementResult = MovementResult
                 .builder()
                 .newActorMobilityState(ActorMobilityState.Jumping)
-                .newDamage(character.getPhysicalDamage() +
+                .damageBonus(character.getPhysicalDamage() +
                         character.getStrength() + character.getAgility() + character.getModificationDamage())
                 .build();
         return movementResult;

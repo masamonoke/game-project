@@ -5,17 +5,22 @@ import javafx.scene.image.Image;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.vsu.App.logger;
+
 
 public class ImageCache {
     private final Map<String, Image> imageMap;
- //Ghjd
     public ImageCache() {
         this.imageMap = new HashMap<>();
     }
 
     public Image getImageByPath(String path) {
         if (!imageMap.containsKey(path)) {
-            imageMap.put(path, new Image(String.valueOf(getClass().getResource(path))));
+            try {
+                imageMap.put(path, new Image(String.valueOf(getClass().getResource(path))));
+            } catch (RuntimeException e) {
+                logger.info("Internal graphics not initialized yet");
+            }
         }
         return imageMap.get(path);
     }
