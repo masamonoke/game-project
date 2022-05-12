@@ -25,6 +25,6 @@ public class GameService {
             }
         }
         Tile t = validTiles.get(new Random().nextInt(validTiles.size() - 1));
-        return Character.builder().name("Lolek").pos(new Position(t.row, t.col)).build();
+        return Character.builder().name("Lolek").tilePos(new Position(t.row, t.col)).build();
     }
 }

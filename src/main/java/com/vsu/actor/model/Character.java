@@ -1,5 +1,6 @@
 package com.vsu.actor.model;
 
+import com.vsu.map.Vector2;
 import lombok.*;
 
 
@@ -16,7 +17,9 @@ public class Character extends Actor {
     protected String id;
     protected String name;
     //TODO: отвязать от тайлов
-    protected Position pos;
+    protected Position tilePos;
+    protected Vector2 pos;
+    protected Vector2 cursorPos;
     protected int exp;
     protected int toxic;
     protected int strength;
@@ -37,7 +40,8 @@ public class Character extends Actor {
         magicalDamage = 1;
         id = UUID.randomUUID().toString();
         this.name = name;
-        pos = new Position(0, 0);
+        tilePos = new Position(0, 0);
+        pos = new Vector2(0, 0);
         exp = 0;
         toxic = 0;
         strength = 1;
@@ -47,6 +51,18 @@ public class Character extends Actor {
         trickery = 1;
         modificationDamage = 1;
         criticalChance = 0.3;
+    }
+
+    public void setPos(double x, double y) {
+        pos.setCoords(x, y);
+    }
+
+    public void setCursorPos(double x, double y) {
+        if (cursorPos == null) {
+            cursorPos = new Vector2(x, y);
+            return;
+        }
+        cursorPos.setCoords(x, y);
     }
 
     @Override

@@ -15,5 +15,6 @@ public abstract class Movement {
     protected MovementResult movementResult;
     protected MovementType type;
 
-    public abstract MovementResult apply(Movement prev, Character character);
+    //TODO: доделать формулы под статы от экипировки и оружия
+    public abstract MovementResult apply(Character character);
 }

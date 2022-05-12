@@ -81,4 +81,20 @@ class ComboTreeTest {
         c.traverse(new LightAttack(), character);
         Files.deleteIfExists(file.toPath());
     }
+
+    @Test
+    void timerTest() throws IOException, InterruptedException {
+        var c = new ComboTree();
+        var character = new Character("Lolek");
+        var lightAttack = new LightAttack();
+        c.traverse(lightAttack, character);
+        Thread.sleep(2001);
+        assertTrue(c.traverse(lightAttack, character).isRoot());
+
+        c.traverse(lightAttack, character);
+        Thread.sleep(1500);
+        c.traverse(lightAttack, character);
+        Thread.sleep(1500);
+        assertTrue(c.traverse(lightAttack, character).isLeaf());
+    }
 }

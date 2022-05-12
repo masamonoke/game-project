@@ -10,16 +10,22 @@ import java.util.Map;
 
 @Getter
 public class ViewConfig {
-    @Getter
-    private static final ViewConfig INSTANCE = new ViewConfig();
-    private Map<TileType, Image> tileTypeImageMap;
+    private static ViewConfig INSTANCE;
+    private final Map<TileType, Image> tileTypeImageMap;
     //тестовый мап
-    private Map<TileType, Color> tileTypeColorMap;
+    private final Map<TileType, Color> tileTypeColorMap;
     private final ImageCache imageCache;
     private final int mapRowCount;
     private final int mapColCount;
     private final int windowWidth;
     private final int windowHeight;
+
+    public static ViewConfig getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new ViewConfig();
+        }
+        return INSTANCE;
+    }
 
     private ViewConfig() {
         this.imageCache = new ImageCache();
