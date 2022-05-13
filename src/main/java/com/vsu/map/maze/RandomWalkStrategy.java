@@ -3,7 +3,7 @@ package com.vsu.map.maze;
 import com.vsu.map.maze.dungeon.RoomGenerator;
 import com.vsu.map.maze.dungeon.parameters.DungeonGenParameters;
 import com.vsu.map.model.Tilemap;
-import com.vsu.map.TilemapService;
+import com.vsu.service.TilemapService;
 
 import java.util.HashSet;
 

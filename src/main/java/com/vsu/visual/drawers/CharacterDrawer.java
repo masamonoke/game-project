@@ -23,10 +23,10 @@ public class CharacterDrawer extends Drawer {
 
     @Override
     public void draw() {
-        data.getCamera().setLayoutX((-ViewConfig.getINSTANCE().getWindowWidth() >> 1)
-                + character.getPos().row * data.getTileSize());
-        data.getCamera().setLayoutY((-ViewConfig.getINSTANCE().getWindowHeight() >> 1)
-                + character.getPos().col * data.getTileSize());
+        data.getCamera().setLayoutX((-ViewConfig.getInstance().getWindowWidth() >> 1)
+                + character.getTilePos().row * data.getTileSize());
+        data.getCamera().setLayoutY((-ViewConfig.getInstance().getWindowHeight() >> 1)
+                + character.getTilePos().col * data.getTileSize());
         redraw(data.getCharacterCanvas(),Direction.East);
         if (!isMovementApplied) {
             CharacterControls movement = new CharacterControls(data);
@@ -59,7 +59,7 @@ public class CharacterDrawer extends Drawer {
                         10, 0);
             }
         }
-        canvas.setLayoutX(character.getPos().col * data.getTileSize());
-        canvas.setLayoutY(character.getPos().row * data.getTileSize());
+        canvas.setLayoutX(character.getTilePos().col * data.getTileSize());
+        canvas.setLayoutY(character.getTilePos().row * data.getTileSize());
     }
 }

@@ -5,7 +5,7 @@ import com.vsu.map.maze.MazeGenerationFactory;
 import com.vsu.map.maze.MazeGenerationStrategy;
 import com.vsu.map.model.TileType;
 import com.vsu.map.model.Tilemap;
-import com.vsu.map.TilemapService;
+import com.vsu.service.TilemapService;
 
 public class ViewController {
 

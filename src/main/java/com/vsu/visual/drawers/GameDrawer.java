@@ -20,7 +20,7 @@ public class GameDrawer extends Drawer {
                 data.getTilemap().getRowSize() * data.getTileSize());
         for (int i = 0; i < data.getTilemap().getRowSize(); i++) {
             for (int j = 0; j < data.getTilemap().getColSize(); j++) {
-                Image image = ViewConfig.getINSTANCE().getTileTypeImageMap().get(data.getTilemap().getMatrix()[i][j].getType());
+                Image image = ViewConfig.getInstance().getTileTypeImageMap().get(data.getTilemap().getMatrix()[i][j].getType());
                 canvas.getGraphicsContext2D()
                         .drawImage(image, j * data.getTileSize(), i * data.getTileSize());
             }
