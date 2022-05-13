@@ -37,8 +37,6 @@ public class MenuDrawer extends Drawer {
         currentPane = new Pane(canvas);
         currentPane.setBackground(background);
         //TODO:  переделать под относительное расположение
-        // Марк не коммитил мою ветку уже месяц,а я замерждил то,что было в главной ветке
-        // относительное расположение было в моей ветке и оно снеслось нафиг,съезжого
         drawGif(data.getImageCache().getImageByPath("/img/menu/eye.gif"), 75, 90);
         drawGif(data.getImageCache().getImageByPath("/img/menu/monster.gif"), 60, 435);
         drawTitle(canvas, data.getImageCache().getImageByPath("/img/menu/gametitle.png"));
@@ -70,7 +68,6 @@ public class MenuDrawer extends Drawer {
     }
 
     ViewController controller = new ViewController();
-
     //TODO: переделать под относительное расположение
     private void initButtons() {
         Button startButton = new Button();
@@ -78,8 +75,8 @@ public class MenuDrawer extends Drawer {
                 data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOff.png"), 250, 200);
         startButton.onActionProperty().set(actionEvent -> {
             controller.generateMaze(MazeGenAlgorithms.RandomWalk, data.getTilemap());
-            GameDrawer gameDrawer = new GameDrawer(data);
-            gameDrawer.draw();
+            GameDrawer drawer = new GameDrawer(data);
+            drawer.draw();
         });
         Button settingsButton = new Button();
         drawButton(settingsButton, data.getImageCache().getImageByPath("/img/menu/buttons/buttonConfOn.png"),

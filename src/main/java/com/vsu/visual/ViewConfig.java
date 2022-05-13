@@ -20,13 +20,13 @@ public class ViewConfig {
     private final int windowWidth;
     private final int windowHeight;
 
-   public static ViewConfig getInstance() {
+    public static ViewConfig getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new ViewConfig();
         }
         return INSTANCE;
     }
-  
+
     private ViewConfig() {
         this.imageCache = new ImageCache();
 
@@ -51,7 +51,5 @@ public class ViewConfig {
 
         windowWidth = 700;
         windowHeight = 600;
-
-
     }
 }

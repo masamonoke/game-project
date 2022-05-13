@@ -31,11 +31,6 @@ public class GameDrawer extends Drawer {
         Canvas charCanvas = new Canvas(50, 50);
         data.setCharacterCanvas(charCanvas);
         data.getCurrentPane().getChildren().add(charCanvas);
-
-        Canvas configCanvas = new Canvas(600, 400-data.getTileSize()+400/data.getTilemap().getColSize());
-        data.setConfigCanvas(configCanvas);
-        data.getCurrentPane().getChildren().add(configCanvas);
-
         GameService gameService = new GameService();
         data.setCharacter(gameService.initCharacter(data.getTilemap()));
         CharacterDrawer drawer = new CharacterDrawer(data, data.getCharacter());
