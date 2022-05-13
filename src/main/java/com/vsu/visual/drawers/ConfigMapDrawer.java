@@ -14,15 +14,15 @@ public class ConfigMapDrawer extends Drawer {
     public void draw() {
         for (int i = 0; i < data.getTilemap().getRowSize(); i++) {
             for (int j = 0; j < data.getTilemap().getColSize(); j++) {
-                Image image = ViewConfig.getINSTANCE().getTileTypeImageMap().get(data.getTilemap().getMatrix()[i][j].getType());
+                Image image = ViewConfig.getInstance().getTileTypeImageMap().get(data.getTilemap().getMatrix()[i][j].getType());
                 data.getConfigCanvas().getGraphicsContext2D()
                         .drawImage(image, 600 / data.getTilemap().getRowSize() * j, 400 / data.getTilemap().getColSize() * i);
             }
         }
         data.getConfigCanvas().getGraphicsContext2D().setFill(Color.RED);
         data.getConfigCanvas().getGraphicsContext2D().fillRect(
-                600 / data.getTilemap().getRowSize() * data.getCharacter().getPos().col,
-                400 / data.getTilemap().getColSize()*data.getCharacter().getPos().row,
+                600 / data.getTilemap().getRowSize() * data.getCharacter().getTilePos().col,
+                400 / data.getTilemap().getColSize() * data.getCharacter().getTilePos().row,
                 600 / data.getTilemap().getRowSize(),400 / data.getTilemap().getColSize()
         );
         data.getConfigCanvas().getGraphicsContext2D().fill();
