@@ -21,6 +21,7 @@ public class ViewConfig {
     private final int windowWidth;
     private final int windowHeight;
 
+
     private ViewConfig() {
         this.imageCache = new ImageCache();
 
@@ -45,5 +46,7 @@ public class ViewConfig {
 
         windowWidth = 700;
         windowHeight = 600;
+
+
     }
 }
