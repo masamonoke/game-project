@@ -27,7 +27,6 @@ public class VisualData {
     private int windowHeight = 600;
 
     private Canvas characterCanvas;
-    private Canvas configCanvas;
     private Character character;
-    private boolean InPause;
+
 }
