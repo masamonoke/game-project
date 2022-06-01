@@ -44,7 +44,7 @@ public class GameDrawer extends Drawer {
 
 
         Scene scene = new Scene(data.getCurrentPane(), data.getWindowWidth(), data.getWindowHeight());
-
+        scene.setFill(Color.BLACK);
         scene.setCamera(data.getCamera());
         data.getStage().setScene(scene);
         data.getStage().setFullScreen(true);

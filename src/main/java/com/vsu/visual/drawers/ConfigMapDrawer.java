@@ -2,6 +2,7 @@ package com.vsu.visual.drawers;
 
 import com.vsu.visual.ViewConfig;
 import com.vsu.visual.VisualData;
+import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import lombok.AllArgsConstructor;
 
@@ -11,6 +12,7 @@ public class ConfigMapDrawer extends Drawer {
 
     @Override
     public void draw() {
+
         for (int i = 0; i < data.getTilemap().getRowSize(); i++) {
             for (int j = 0; j < data.getTilemap().getColSize(); j++) {
                 data.getConfigCanvas().getGraphicsContext2D().setFill(ViewConfig.getInstance().

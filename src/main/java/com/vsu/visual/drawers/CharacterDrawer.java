@@ -5,7 +5,10 @@ import com.vsu.visual.CharacterControls;
 import com.vsu.visual.ViewConfig;
 import com.vsu.visual.VisualData;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.transform.Rotate;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -38,26 +41,39 @@ public class CharacterDrawer extends Drawer {
 
 
     public void redraw(Canvas canvas, Direction direction) {
-        canvas.getGraphicsContext2D().clearRect(0, 0,data.getTileSize() , data.getTileSize() );
+        Image image = data.getImageCache().getImageByPath("/img/character/move.gif");
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.clearRect(0, 0,data.getTileSize() , data.getTileSize() );
+
         switch (direction) {
             case North -> {
-                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("img/character/static.png"),0,0);
-                //  canvas.getGraphicsContext2D().rotate(90);
+               drawRotatedImage(gc,image,-90,0,0);
+
             }
             case South -> {
-                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/S.gif"),
-                        10, 0);
+                drawRotatedImage(gc,image,90,0,0);
+
             }
             case West -> {
-                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/A.gif"),
-                        10, 0);
+                drawRotatedImage(gc,image,180,0,0);
+
             }
             case East -> {
-                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/D.gif"),
-                        10, 0);
+                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/move.gif"),0,0);
             }
         }
         canvas.setLayoutX(character.getTilePos().col * data.getTileSize());
         canvas.setLayoutY(character.getTilePos().row * data.getTileSize());
+    }
+    private void drawRotatedImage(GraphicsContext gc, Image image, double angle, double tlpx, double tlpy) {
+        gc.save(); // saves the current state on stack, including the current transform
+        rotate(gc, angle, tlpx + image.getWidth() / 2, tlpy + image.getHeight() / 2);
+        gc.drawImage(image, tlpx, tlpy);
+        gc.restore(); //
+    }
+
+    private void rotate(GraphicsContext gc, double angle, double px, double py) {
+        Rotate r = new Rotate(angle, px, py);
+        gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
     }
 }

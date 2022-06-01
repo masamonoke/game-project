@@ -18,6 +18,7 @@ public class MainMapDrawer extends Drawer {
                 data.getMainMapCanvas().getWidth(), data.getMainMapCanvas().getHeight());
         data.getMainMapCanvas().getGraphicsContext2D().fill();
 
+
         for (int i = 1; i < data.getTilemap().getRowSize() - 2; i++) {
             for (int j = 1; j < data.getTilemap().getColSize() - 2; j++) {
                 if (data.getTilemap().getMatrix()[i][j].getType() != TileType.Wall) {
