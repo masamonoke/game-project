@@ -26,9 +26,10 @@ public class VisualData {
     private int characterSize = 48;
     private double windowWidth = 700;
     private double windowHeight = 600;
+    private Character character;
 
     private Canvas characterCanvas;
-    private Character character;
+    private Canvas mainMapCanvas;
     private Canvas configCanvas;
     private boolean inPause;
 }

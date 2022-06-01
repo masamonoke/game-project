@@ -7,39 +7,44 @@ import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class GameDrawer extends Drawer {
-    VisualData data;
+   private VisualData data;
 
     @Override
     public void draw() {
-        Canvas canvas = new Canvas(data.getTilemap().getColSize() * data.getTileSize(),
-                data.getTilemap().getRowSize() * data.getTileSize());
-        for (int i = 0; i < data.getTilemap().getRowSize(); i++) {
-            for (int j = 0; j < data.getTilemap().getColSize(); j++) {
-                Image image = ViewConfig.getInstance().getTileTypeImageMap().get(data.getTilemap().getMatrix()[i][j].getType());
-                canvas.getGraphicsContext2D()
-                        .drawImage(image, j * data.getTileSize(), i * data.getTileSize());
-            }
-        }
-        data.setCurrentPane(new Pane(canvas));
+        data.setMainMapCanvas(new Canvas(data.getTilemap().getColSize() * data.getTileSize(),
+                data.getTilemap().getRowSize() * data.getTileSize()));
+        data.setConfigCanvas(new Canvas(data.getWindowWidth()/2,data.getWindowHeight()/2));
+        data.setCharacterCanvas(new Canvas(data.getTileSize(),data.getTileSize()));
+
+        data.setCurrentPane(new Pane(data.getMainMapCanvas()));
+
+
+        GameService gameService = new GameService();
+
+        data.setCharacter(gameService.initCharacter(data.getTilemap()));
         data.setCamera(new PerspectiveCamera());
 
-        Canvas charCanvas = new Canvas(data.getTileSize(), data.getTileSize());
-        data.setCharacterCanvas(charCanvas);
-        data.getCurrentPane().getChildren().add(charCanvas);
-        GameService gameService = new GameService();
-        data.setCharacter(gameService.initCharacter(data.getTilemap()));
+        CharacterDrawer drawer = new CharacterDrawer(data,data.getCharacter());
+        MainMapDrawer mapDrawer = new MainMapDrawer(data);
 
-        CharacterDrawer drawer = new CharacterDrawer(data, data.getCharacter());
+        mapDrawer.draw();
         drawer.draw();
-        data.setConfigCanvas(new Canvas(data.getWindowWidth()/2,data.getWindowHeight()/2));
+
+        data.getCurrentPane().getChildren().add(data.getCharacterCanvas());
         data.getCurrentPane().getChildren().add(data.getConfigCanvas());
 
+
         Scene scene = new Scene(data.getCurrentPane(), data.getWindowWidth(), data.getWindowHeight());
+
         scene.setCamera(data.getCamera());
         data.getStage().setScene(scene);
         data.getStage().setFullScreen(true);
