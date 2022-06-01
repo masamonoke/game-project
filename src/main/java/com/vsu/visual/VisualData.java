@@ -20,13 +20,14 @@ public class VisualData {
     private Tilemap tilemap;
     private Camera camera;
     private Pane currentPane;
-    //TODO: задавать это значение из конструктора
+
     private int tileSize = 48;
     private int characterSize = 48;
-    private int windowWidth = 700;
-    private int windowHeight = 600;
+    private double windowWidth = 700;
+    private double windowHeight = 600;
 
     private Canvas characterCanvas;
     private Character character;
     private Canvas configCanvas;
+    private boolean inPause;
 }
