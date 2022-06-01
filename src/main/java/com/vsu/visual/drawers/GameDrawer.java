@@ -36,7 +36,8 @@ public class GameDrawer extends Drawer {
 
         CharacterDrawer drawer = new CharacterDrawer(data, data.getCharacter());
         drawer.draw();
-        data.setConfigCanvas(new Canvas(data.getWindowWidth(),data.getWindowHeight()));
+        data.setConfigCanvas(new Canvas(data.getWindowWidth()/2,data.getWindowHeight()/2));
+        data.getCurrentPane().getChildren().add(data.getConfigCanvas());
 
         Scene scene = new Scene(data.getCurrentPane(), data.getWindowWidth(), data.getWindowHeight());
         scene.setCamera(data.getCamera());
