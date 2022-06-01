@@ -2,7 +2,6 @@ package com.vsu.visual.drawers;
 
 import com.vsu.visual.ViewConfig;
 import com.vsu.visual.VisualData;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import lombok.AllArgsConstructor;
 

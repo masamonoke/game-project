@@ -6,6 +6,7 @@ public enum TileType {
     Room,
     Forest,
     Lake,
-    Bridge,
-    Swamp
+    Swamp,
+    Way,
+    Bridge
 }

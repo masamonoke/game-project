@@ -1,5 +1,6 @@
 package com.vsu.visual;
 
+
 import com.vsu.actor.model.Character;
 import com.vsu.map.model.Tilemap;
 import javafx.scene.Camera;

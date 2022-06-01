@@ -1,8 +1,8 @@
 package com.vsu;
 
 import com.vsu.map.model.Tilemap;
-import com.vsu.visual.ImageCache;
 import com.vsu.visual.ViewConfig;
+import com.vsu.visual.ImageCache;
 import com.vsu.visual.drawers.MenuDrawer;
 import com.vsu.visual.VisualData;
 import javafx.application.Application;
