@@ -23,10 +23,10 @@ public class CharacterDrawer extends Drawer {
 
     @Override
     public void draw() {
-        data.getCamera().setLayoutX((-ViewConfig.getInstance().getWindowWidth() >> 1)
-                + character.getTilePos().row * data.getTileSize());
-        data.getCamera().setLayoutY((-ViewConfig.getInstance().getWindowHeight() >> 1)
+        data.getCamera().setLayoutX(-data.getWindowWidth()/2
                 + character.getTilePos().col * data.getTileSize());
+        data.getCamera().setLayoutY(-data.getWindowHeight()/2
+                + character.getTilePos().row * data.getTileSize());
         redraw(data.getCharacterCanvas(),Direction.East);
         if (!isMovementApplied) {
             CharacterControls movement = new CharacterControls(data);
@@ -38,7 +38,7 @@ public class CharacterDrawer extends Drawer {
 
 
     public void redraw(Canvas canvas, Direction direction) {
-        canvas.getGraphicsContext2D().clearRect(0, 0, , 50);
+        canvas.getGraphicsContext2D().clearRect(0, 0,data.getTileSize() , data.getTileSize() );
         switch (direction) {
             case North -> {
                 canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/W.gif"),

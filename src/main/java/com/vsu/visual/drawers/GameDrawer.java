@@ -28,15 +28,17 @@ public class GameDrawer extends Drawer {
         data.setCurrentPane(new Pane(canvas));
         data.setCamera(new PerspectiveCamera());
 
-        Canvas charCanvas = new Canvas(50, 50);
+        Canvas charCanvas = new Canvas(data.getTileSize(), data.getTileSize());
         data.setCharacterCanvas(charCanvas);
         data.getCurrentPane().getChildren().add(charCanvas);
         GameService gameService = new GameService();
         data.setCharacter(gameService.initCharacter(data.getTilemap()));
+
         CharacterDrawer drawer = new CharacterDrawer(data, data.getCharacter());
         drawer.draw();
+        data.setConfigCanvas(new Canvas(data.getWindowWidth(),data.getWindowHeight()));
 
-        Scene scene = new Scene(data.getCurrentPane(), 700, 600);
+        Scene scene = new Scene(data.getCurrentPane(), data.getWindowWidth(), data.getWindowHeight());
         scene.setCamera(data.getCamera());
         data.getStage().setScene(scene);
         data.getStage().setFullScreen(true);
