@@ -41,8 +41,8 @@ public class CharacterDrawer extends Drawer {
         canvas.getGraphicsContext2D().clearRect(0, 0,data.getTileSize() , data.getTileSize() );
         switch (direction) {
             case North -> {
-                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/W.gif"),
-                        10, 0);
+                canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("img/character/static.png"),0,0);
+                //  canvas.getGraphicsContext2D().rotate(90);
             }
             case South -> {
                 canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/S.gif"),
