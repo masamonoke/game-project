@@ -28,5 +28,5 @@ public class VisualData {
 
     private Canvas characterCanvas;
     private Character character;
-
+    private Canvas configCanvas;
 }
