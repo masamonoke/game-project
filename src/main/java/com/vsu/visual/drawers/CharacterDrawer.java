@@ -36,11 +36,9 @@ public class CharacterDrawer extends Drawer {
         }
     }
 
-    //TODO: заменить магические числа на значения из конфига
-    //TODO: это шизо-расположение картинки персонажа относительно холста,
-    // нужно изменить гифки на пропорциональные (С)
+
     public void redraw(Canvas canvas, Direction direction) {
-        canvas.getGraphicsContext2D().clearRect(0, 0, 50, 50);
+        canvas.getGraphicsContext2D().clearRect(0, 0, , 50);
         switch (direction) {
             case North -> {
                 canvas.getGraphicsContext2D().drawImage(data.getImageCache().getImageByPath("/img/character/W.gif"),
