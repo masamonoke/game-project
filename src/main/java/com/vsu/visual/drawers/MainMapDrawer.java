@@ -13,11 +13,12 @@ public class MainMapDrawer extends Drawer {
 
     @Override
     public void draw() {
-        data.getMainMapCanvas().getGraphicsContext2D().setFill(Color.BLACK);
-        data.getMainMapCanvas().getGraphicsContext2D().fillRect(0, 0,
-                data.getMainMapCanvas().getWidth(), data.getMainMapCanvas().getHeight());
-        data.getMainMapCanvas().getGraphicsContext2D().fill();
-
+      //  data.getMainMapCanvas().getGraphicsContext2D().setFill(Color.BLACK);
+     //   data.getMainMapCanvas().getGraphicsContext2D().fillRect(0, 0,
+      //          data.getMainMapCanvas().getWidth(), data.getMainMapCanvas().getHeight());
+    //    data.getMainMapCanvas().getGraphicsContext2D().fill();
+        data.getMainMapCanvas().getGraphicsContext2D().drawImage(ViewConfig.getInstance().getImageCache().
+                getImageByPath("/img/underground/backgroundDungeon.jpg"),0,0);
 
         for (int i = 1; i < data.getTilemap().getRowSize() - 2; i++) {
             for (int j = 1; j < data.getTilemap().getColSize() - 2; j++) {
