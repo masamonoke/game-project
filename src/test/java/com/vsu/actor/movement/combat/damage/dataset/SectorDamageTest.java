@@ -3,16 +3,17 @@ package com.vsu.actor.movement.combat.damage.dataset;
 import com.vsu.map.Vector2;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class SectorDamageDatasetTest {
+class SectorDamageTest {
     @Test
     void isDamagedTest() {
         var cursorAngle = 80;
         var radius = 50;
         var center = new Vector2(0, 0);
         var p = new Vector2(30, 20);
-        var sector = new SectorDamageDataset(alpha(cursorAngle), beta(cursorAngle), radius, center);
+        var sector = new SectorDamage(alpha(cursorAngle), beta(cursorAngle), radius, center);
         assertTrue(sector.isDamaged(p));
 
         cursorAngle = 134;
@@ -28,7 +29,7 @@ class SectorDamageDatasetTest {
     void isDamagedTestBoundaryCase1() {
         var cursorAngle = 10;
         var radius = 50;
-        var sector = new SectorDamageDataset(alpha(cursorAngle), beta(cursorAngle), radius, new Vector2(0, 0));
+        var sector = new SectorDamage(alpha(cursorAngle), beta(cursorAngle), radius, new Vector2(0, 0));
         var p = new Vector2(1, 1);
         assertTrue(sector.isDamaged(p));
     }
@@ -38,7 +39,7 @@ class SectorDamageDatasetTest {
     void isDamagedTestBoundaryCase2() {
         var cursorAngle = 10;
         var radius = 50;
-        var sector = new SectorDamageDataset(alpha(cursorAngle), beta(cursorAngle), radius, new Vector2(0, 0));
+        var sector = new SectorDamage(alpha(cursorAngle), beta(cursorAngle), radius, new Vector2(0, 0));
         var p = new Vector2(1, -1);
         assertTrue(sector.isDamaged(p));
     }
@@ -48,7 +49,7 @@ class SectorDamageDatasetTest {
     void isDamagedTestBoundaryCase3() {
         var cursorAngle = 340;
         var radius = 50;
-        var sector = new SectorDamageDataset(alpha(cursorAngle), beta(cursorAngle), radius, new Vector2(0, 0));
+        var sector = new SectorDamage(alpha(cursorAngle), beta(cursorAngle), radius, new Vector2(0, 0));
         var p = new Vector2(1, 1);
         assertTrue(sector.isDamaged(p));
     }
@@ -58,7 +59,7 @@ class SectorDamageDatasetTest {
     void isDamagedTestBoundaryCase4() {
         var cursorAngle = 340;
         var radius = 50;
-        var sector = new SectorDamageDataset(alpha(cursorAngle), beta(cursorAngle), radius, new Vector2(0, 0));
+        var sector = new SectorDamage(alpha(cursorAngle), beta(cursorAngle), radius, new Vector2(0, 0));
         var p = new Vector2(1, -1);
         assertTrue(sector.isDamaged(p));
     }

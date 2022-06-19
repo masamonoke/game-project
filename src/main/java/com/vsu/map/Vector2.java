@@ -1,6 +1,5 @@
 package com.vsu.map;
 
-import com.vsu.utils.GeometryUtils;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
@@ -28,9 +27,16 @@ public class Vector2 {
         return new Vector2(this.x + other.x, this.y + other.y);
     }
 
-    //TODO: test
     public Vector2 subtract(Vector2 other) {
         return new Vector2(this.x - other.x, this.y - other.y);
+    }
+
+    public Vector2 divide(double val) {
+        return new Vector2(this.x / val, this.y / val);
+    }
+
+    public Vector2 multiply(double val) {
+        return new Vector2(this.x * val, this.y * val);
     }
 
     public void setCoords(double x, double y) {
@@ -38,16 +44,8 @@ public class Vector2 {
         this.y = y;
     }
 
-    public void setCoords(Vector2 vector) {
-        this.x = vector.x;
-        this.y = vector.y;
-    }
-
-    public Vector2 getMiddlePointFromDistanceAndEndPoint(Vector2 cartesianVector, int distance) {
-        var radian = GeometryUtils.findVectorAngleByPoint(cartesianVector);
-        var destinationX = distance * Math.cos(radian) + this.x;
-        var destinationY = distance * Math.sin(radian) + this.y;
-        return new Vector2(destinationX, destinationY);
+    public boolean lessThan(double val) {
+        return this.x < val && this.y < val;
     }
 
     @Override

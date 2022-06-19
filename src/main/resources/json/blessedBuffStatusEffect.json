@@ -1,0 +1,13 @@
+{
+  "stats" : {
+    "toxic": "-10",
+    "strength": "10",
+    "intelligence": "10",
+    "agility": "10",
+    "noise": "-10",
+    "trickery": "10",
+    "speed": "10"
+  },
+  "effectTime" : 5000,
+  "damageBonus": 3
+}
