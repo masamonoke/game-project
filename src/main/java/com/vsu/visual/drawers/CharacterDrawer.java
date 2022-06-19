@@ -1,6 +1,6 @@
 package com.vsu.visual.drawers;
 
-import com.vsu.actor.model.Character;
+import com.vsu.actor.model.Actor;
 import com.vsu.visual.CharacterControls;
 import com.vsu.visual.ViewConfig;
 import com.vsu.visual.VisualData;
@@ -12,21 +12,21 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CharacterDrawer extends Drawer {
     @NonNull
-    private Character character;
+    private Actor actor;
     private boolean isMovementApplied;
 
-    public CharacterDrawer(VisualData data, Character character) {
+    public CharacterDrawer(VisualData data, Actor actor) {
         super(data);
-        this.character = character;
+        this.actor = actor;
         isMovementApplied = false;
     }
 
     @Override
     public void draw() {
         data.getCamera().setLayoutX((-ViewConfig.getInstance().getWindowWidth() >> 1)
-                + character.getTilePos().row * data.getTileSize());
+                + actor.getTilePos().row * data.getTileSize());
         data.getCamera().setLayoutY((-ViewConfig.getInstance().getWindowHeight() >> 1)
-                + character.getTilePos().col * data.getTileSize());
+                + actor.getTilePos().col * data.getTileSize());
         redraw(data.getCharacterCanvas(),Direction.East);
         if (!isMovementApplied) {
             CharacterControls movement = new CharacterControls(data);
@@ -59,7 +59,7 @@ public class CharacterDrawer extends Drawer {
                         10, 0);
             }
         }
-        canvas.setLayoutX(character.getTilePos().col * data.getTileSize());
-        canvas.setLayoutY(character.getTilePos().row * data.getTileSize());
+        canvas.setLayoutX(actor.getTilePos().col * data.getTileSize());
+        canvas.setLayoutY(actor.getTilePos().row * data.getTileSize());
     }
 }

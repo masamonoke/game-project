@@ -1,0 +1,8 @@
+{LightAttack}{LightAttack}{LightAttack}{StrengthBuff}
+{LightAttack}{HeavyAttack}{LightAttack}{StrengthBuff}
+{LightAttack}{LightAttack}{HeavyAttack}{CircleAoe}
+{LightAttack}{LightAttack}{LightAttack}{LightAttack}{StrengthBuff}
+{HeavyAttack}{HeavyAttack}{LightAttack}{StrengthBuff}
+{Jump}{HeavyAttack}{HeavyAttack}{CircleAoe}
+{Crouch}{LightAttack}{LightAttack}{StrengthBuff}
+{Action}{HeavyAttack}{LightAttack}{StrengthBuff}

@@ -35,9 +35,9 @@ public class TreeNode {
 
     public TreeNode find(Movement data) {
         var found =
-                children.stream().filter(c -> c.data.getType().equals(data.getType())).findFirst().orElse(null);
+                children.stream().filter(c -> c.data.getMovementType().equals(data.getMovementType())).findFirst().orElse(null);
         if (found != null) {
-            if (found.data.getType().equals(data.getType())) {
+            if (found.data.getMovementType().equals(data.getMovementType())) {
                 return found;
             }
         }

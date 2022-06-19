@@ -7,11 +7,11 @@ import lombok.Setter;
 //TODO: отвязать вычисления от градусов и перейти к радианам
 //TODO: проверить, работает ли при отклонении ±90 или переделать под все возможные случаи
 @Setter
-public class SectorDamageDataset extends CircleDamageDataset {
+public class SectorDamage extends CircleDamage {
     private double alphaAngle;
     private double betaAngle;
 
-    public SectorDamageDataset(double alphaAngle, double betaAngle, double radius, Vector2 center) {
+    public SectorDamage(double alphaAngle, double betaAngle, double radius, Vector2 center) {
         super(radius, center);
         this.alphaAngle = alphaAngle;
         this.betaAngle = betaAngle;

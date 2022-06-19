@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import lombok.AllArgsConstructor;
 
 import static com.vsu.App.logger;
-import static com.vsu.map.model.TilemapDirection2D.*;
+import static com.vsu.map.model.TilemapDirection2D.Position;
 
 @AllArgsConstructor
 public class CharacterControls {
@@ -17,7 +17,7 @@ public class CharacterControls {
         Button control = new Button();
         control.setOnKeyPressed(keyEvent -> {
             Direction direction = null;
-            Position pos = new Position(data.getCharacter().getTilePos().row, data.getCharacter().getTilePos().col);
+            Position pos = new Position(data.getActor().getTilePos().row, data.getActor().getTilePos().col);
             Position newPos = null;
             switch (keyEvent.getCode()) {
                 case A -> {
@@ -44,7 +44,7 @@ public class CharacterControls {
                         .setLayoutX((-data.getWindowWidth() >> 1) + newPos.col * data.getTileSize());
                 data.getCamera()
                         .setLayoutY((-data.getWindowHeight() >> 1) + newPos.row * data.getTileSize());
-                data.getCharacter().setTilePos(newPos);
+                data.getActor().setTilePos(newPos);
                 drawer.redraw(canvas, direction);
                 logger.info("Character now is on " + data.getTilemap().getMatrix()[newPos.row][newPos.col] + " tile");
             }
