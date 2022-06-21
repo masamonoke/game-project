@@ -56,10 +56,6 @@ public class CharacterControls {
             if (direction != null &&
                     !data.getTilemap().getMatrix()[newPos.row][newPos.col].getType().equals(TileType.Wall)
             ) {
-                data.getCamera()
-                        .setLayoutX(-data.getWindowWidth() / 2 + newPos.col * data.getTileSize());
-                data.getCamera()
-                        .setLayoutY(-data.getWindowHeight() / 2 + newPos.row * data.getTileSize());
                 data.getCharacter().setTilePos(newPos);
                 drawer.redraw(canvas, direction);
                 logger.info("Character now is on " + data.getTilemap().getMatrix()[newPos.row][newPos.col] + " tile");

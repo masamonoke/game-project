@@ -20,8 +20,7 @@ public class GameDrawer extends Drawer {
 
     @Override
     public void draw() {
-        data.setMainMapCanvas(new Canvas(data.getTilemap().getColSize() * data.getTileSize(),
-                data.getTilemap().getRowSize() * data.getTileSize()));
+        data.setMainMapCanvas(new Canvas(data.getWindowWidth(),data.getWindowHeight()));
         data.setConfigCanvas(new Canvas(data.getWindowWidth()/2,data.getWindowHeight()/2));
         data.setCharacterCanvas(new Canvas(data.getTileSize(),data.getTileSize()));
 
@@ -31,12 +30,8 @@ public class GameDrawer extends Drawer {
         GameService gameService = new GameService();
 
         data.setCharacter(gameService.initCharacter(data.getTilemap()));
-        data.setCamera(new PerspectiveCamera());
 
         CharacterDrawer drawer = new CharacterDrawer(data,data.getCharacter());
-        MainMapDrawer mapDrawer = new MainMapDrawer(data);
-
-        mapDrawer.draw();
         drawer.draw();
 
         data.getCurrentPane().getChildren().add(data.getCharacterCanvas());
@@ -45,7 +40,6 @@ public class GameDrawer extends Drawer {
 
         Scene scene = new Scene(data.getCurrentPane(), data.getWindowWidth(), data.getWindowHeight());
         scene.setFill(Color.BLACK);
-        scene.setCamera(data.getCamera());
         data.getStage().setScene(scene);
         data.getStage().setFullScreen(true);
         data.getStage().show();

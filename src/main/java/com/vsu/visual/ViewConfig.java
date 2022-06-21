@@ -49,8 +49,8 @@ public class ViewConfig {
         tileTypeColorMap.put(TileType.Bridge, Color.BROWN);
 
 
-        mapRowCount = 119;
-        mapColCount =  119;
+        mapRowCount = 200;
+        mapColCount =  200;
 
         windowWidth = 700;
         windowHeight = 600;

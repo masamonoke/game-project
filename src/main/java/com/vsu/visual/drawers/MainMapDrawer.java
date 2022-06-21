@@ -13,28 +13,19 @@ public class MainMapDrawer extends Drawer {
 
     @Override
     public void draw() {
-        data.getMainMapCanvas().getGraphicsContext2D().setFill(Color.BLACK);
-        data.getMainMapCanvas().getGraphicsContext2D().fillRect(0, 0,
-                data.getMainMapCanvas().getWidth(), data.getMainMapCanvas().getHeight());
-        data.getMainMapCanvas().getGraphicsContext2D().fill();
+        int startX = (int) (data.getCharacter().getTilePos().col - (data.getWindowWidth() / (2 * data.getTileSize())));
+        int startY = (int) (data.getCharacter().getTilePos().row - (data.getWindowHeight() / (2 * data.getTileSize())));
+        System.out.println(data.getWindowWidth() + "+" + data.getWindowHeight());
+        for (int i = -1; i < (data.getWindowWidth() / (data.getTileSize()))+1; i++) {
+            for (int j = -1; j < ((data.getWindowHeight()) / (data.getTileSize()))+1; j++) {
+                if ((((j + startY) >= 0) && (j + startY < ViewConfig.getInstance().getMapRowCount())) &&
+                        (((i + startX) >= 0) && (i + startX < ViewConfig.getInstance().getMapColCount()))) {
+                            data.getMainMapCanvas().getGraphicsContext2D().drawImage(
+                                    ViewConfig.getInstance().getTileTypeImageMap().get(data.getTilemap().getMatrix()[(j + startY)][i + startX].getType())
+                                    , (data.getWindowWidth() / 2 - (data.getCharacter().getTilePos().col - startX) * data.getTileSize()) + data.getTileSize() * i,
+                                    (data.getWindowHeight() / 2 - (data.getCharacter().getTilePos().row - startY) * data.getTileSize()) + data.getTileSize() * j);
+                        }
 
-
-        for (int i = 1; i < data.getTilemap().getRowSize() - 2; i++) {
-            for (int j = 1; j < data.getTilemap().getColSize() - 2; j++) {
-
-                if (data.getTilemap().getMatrix()[i][j].getType() != TileType.Wall) {
-                    drawWalls(i, j);
-                }
-            }
-        }
-
-    }
-
-    private void drawWalls(int row, int col) {
-        for (int i = row - 1; i < row + 2; i++) {
-            for (int j = col - 1; j < col + 2; j++) {
-                Image image = ViewConfig.getInstance().getTileTypeImageMap().get(data.getTilemap().getMatrix()[i][j].getType());
-                data.getMainMapCanvas().getGraphicsContext2D().drawImage(image, j * data.getTileSize(), i * data.getTileSize());
             }
         }
     }
