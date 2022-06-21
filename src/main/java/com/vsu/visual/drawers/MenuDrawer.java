@@ -74,7 +74,7 @@ public class MenuDrawer extends Drawer {
     }
 
     ViewController controller = new ViewController();
-    GenerateRoom generateRoom = new GenerateRoom();
+
     GenerateRiver generateRiver = new GenerateRiver(up, down);
     //TODO: переделать под относительное расположение
     private void initButtons() {
@@ -82,6 +82,7 @@ public class MenuDrawer extends Drawer {
         drawButton(startButton, data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOn.png"),
                 data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOff.png"), 250, 200);
         startButton.onActionProperty().set(actionEvent -> {
+            GenerateRoom generateRoom = new GenerateRoom(data.getTilemap(), 8, 8, 4, 4);
             //controller.generateMaze(MazeGenAlgorithms.RandomWalk, data.getTilemap());
             //generateRoom.generate(data.getTilemap());
             controller.generateMaze(MazeGenAlgorithms.WithoutWallsMap, data.getTilemap());
