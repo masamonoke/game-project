@@ -30,11 +30,6 @@ public class MenuDrawer extends Drawer {
     @Override
     public void draw() {
         data.getStage().setFullScreen(true);
-        Rectangle2D screen = Screen.getPrimary().getBounds();
-
-        data.setWindowWidth(screen.getWidth());
-        data.setWindowHeight(screen.getHeight()) ;
-
         data.getStage().setWidth(data.getWindowWidth());
         data.getStage().setHeight(data.getWindowHeight());
 

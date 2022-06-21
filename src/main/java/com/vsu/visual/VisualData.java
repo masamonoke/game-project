@@ -19,15 +19,17 @@ public class VisualData {
     private final Stage stage;
     @NonNull
     private Tilemap tilemap;
-    private Camera camera;
-    private Pane currentPane;
-
-    private int tileSize = 48;
-    private int characterSize = 48;
-    private double windowWidth = 700;
-    private double windowHeight = 600;
+    @NonNull
+    private int tileSize;
+    @NonNull
+    private int characterSize;
+    @NonNull
+    private double windowWidth;
+    @NonNull
+    private double windowHeight;
     private Character character;
 
+    private Pane currentPane;
     private Canvas characterCanvas;
     private Canvas mainMapCanvas;
     private Canvas configCanvas;
