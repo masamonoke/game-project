@@ -1,8 +1,8 @@
 package com.vsu.visual;
 
+
 import com.vsu.actor.model.Actor;
 import com.vsu.map.model.Tilemap;
-import javafx.scene.Camera;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -21,15 +21,19 @@ public class VisualData {
     private final Stage stage;
     @NonNull
     private Tilemap tilemap;
-    private Camera camera;
-    private Pane currentPane;
-    //TODO: задавать это значение из конструктора
-    private int tileSize = 48;
-    private int characterSize = 48;
-    private int windowWidth = 700;
-    private int windowHeight = 600;
-
-    private Canvas characterCanvas;
+    @NonNull
+    private int tileSize;
+    @NonNull
+    private int characterSize;
+    @NonNull
+    private double windowWidth;
+    @NonNull
+    private double windowHeight;
     private Actor actor;
 
+    private Pane currentPane;
+    private Canvas characterCanvas;
+    private Canvas mainMapCanvas;
+    private Canvas configCanvas;
+    private boolean inPause;
 }

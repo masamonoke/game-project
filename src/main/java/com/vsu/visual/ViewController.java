@@ -15,13 +15,4 @@ public class ViewController {
         TilemapService tilemapService = new TilemapService();
         tilemapService.generateMaze(tilemap, strategy);
     }
-
-    public void fillWithPavements(Tilemap tilemap) {
-        for (int i = 0; i < tilemap.getRowSize(); i++) {
-            for (int j = 0; j < tilemap.getColSize(); j++) {
-                tilemap.getMatrix()[i][j].setType(TileType.Pavement);
-            }
-        }
-    }
-
 }

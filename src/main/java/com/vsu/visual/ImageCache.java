@@ -5,7 +5,6 @@ import javafx.scene.image.Image;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.vsu.App.logger;
 
 
 public class ImageCache {
@@ -19,7 +18,7 @@ public class ImageCache {
             try {
                 imageMap.put(path, new Image(String.valueOf(getClass().getResource(path))));
             } catch (RuntimeException e) {
-                logger.info("Internal graphics not initialized yet");
+
             }
         }
         return imageMap.get(path);

@@ -36,18 +36,21 @@ public class ViewConfig {
         tileTypeImageMap.put(TileType.Wall, this.imageCache.getImageByPath("/img/underground/wall.png"));
         tileTypeImageMap.put(TileType.Pavement, this.imageCache.getImageByPath("/img/underground/pavement.png"));
         tileTypeImageMap.put(TileType.Swamp, this.imageCache.getImageByPath("/img/underground/swamp.png"));
-        tileTypeImageMap.put(TileType.Forest, this.imageCache.getImageByPath("/img/underground/forest.png"));
+        tileTypeImageMap.put(TileType.Grass, this.imageCache.getImageByPath("/img/underground/grass.png"));
+        tileTypeImageMap.put(TileType.Bridge, this.imageCache.getImageByPath("/img/underground/bridge.png"));
 
         tileTypeColorMap = new HashMap<>();
-        tileTypeColorMap.put(TileType.Room, Color.PALEGOLDENROD);
+        tileTypeColorMap.put(TileType.Room, Color.WHITESMOKE);
         tileTypeColorMap.put(TileType.Lake, Color.CADETBLUE);
         tileTypeColorMap.put(TileType.Wall, Color.BLACK);
         tileTypeColorMap.put(TileType.Pavement, Color.WHITE);
         tileTypeColorMap.put(TileType.Swamp, Color.PALEVIOLETRED);
-        tileTypeColorMap.put(TileType.Forest, Color.GREENYELLOW);
+        tileTypeColorMap.put(TileType.Grass, Color.GREENYELLOW);
+        tileTypeColorMap.put(TileType.Bridge, Color.BROWN);
 
-        mapRowCount = 119;
-        mapColCount = 119;
+
+        mapRowCount = 200;
+        mapColCount =  200;
 
         windowWidth = 700;
         windowHeight = 600;
