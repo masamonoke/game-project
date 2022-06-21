@@ -1,5 +1,7 @@
 package com.vsu.visual.drawers;
 
+import com.vsu.map.maze.Direction;
+import com.vsu.map.maze.GenerateRiver;
 import com.vsu.map.maze.GenerateRoom;
 import com.vsu.map.maze.MazeGenAlgorithms;
 import com.vsu.visual.ViewController;
@@ -16,6 +18,9 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.vsu.map.maze.Direction.down;
+import static com.vsu.map.maze.Direction.up;
 
 @RequiredArgsConstructor
 public class MenuDrawer extends Drawer {
@@ -70,16 +75,17 @@ public class MenuDrawer extends Drawer {
 
     ViewController controller = new ViewController();
     GenerateRoom generateRoom = new GenerateRoom();
+    GenerateRiver generateRiver = new GenerateRiver(up, down);
     //TODO: переделать под относительное расположение
     private void initButtons() {
         Button startButton = new Button();
         drawButton(startButton, data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOn.png"),
                 data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOff.png"), 250, 200);
         startButton.onActionProperty().set(actionEvent -> {
-            controller.generateMaze(MazeGenAlgorithms.RandomWalk, data.getTilemap());
-            generateRoom.generate(data.getTilemap());
-
-
+            //controller.generateMaze(MazeGenAlgorithms.RandomWalk, data.getTilemap());
+            //generateRoom.generate(data.getTilemap());
+            controller.generateMaze(MazeGenAlgorithms.WithoutWallsMap, data.getTilemap());
+            generateRiver.generate(data.getTilemap());
 
 
             GameDrawer drawer = new GameDrawer(data);
