@@ -17,6 +17,7 @@ public class CharacterControls {
 
     public Button apply(Canvas canvas, CharacterDrawer drawer) {
         Button control = new Button();
+        control.setOpacity(0);
         control.setOnKeyPressed(keyEvent -> {
             Direction direction = null;
             Position pos = new Position(data.getCharacter().getTilePos().row, data.getCharacter().getTilePos().col);
