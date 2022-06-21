@@ -2,8 +2,8 @@ package com.vsu.visual;
 
 import com.vsu.map.model.TileType;
 import com.vsu.visual.drawers.CharacterDrawer;
-import com.vsu.visual.drawers.Direction;
 import com.vsu.visual.drawers.ConfigMapDrawer;
+import com.vsu.visual.drawers.Direction;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class CharacterControls {
         control.setOpacity(0);
         control.setOnKeyPressed(keyEvent -> {
             Direction direction = null;
-            Position pos = new Position(data.getCharacter().getTilePos().row, data.getCharacter().getTilePos().col);
+            Position pos = new Position(data.getActor().getTilePos().row, data.getActor().getTilePos().col);
             Position newPos = null;
             ConfigMapDrawer configMapDrawer = new ConfigMapDrawer(data);
             if (!data.isInPause()) {
@@ -57,7 +57,7 @@ public class CharacterControls {
             if (direction != null &&
                     !data.getTilemap().getMatrix()[newPos.row][newPos.col].getType().equals(TileType.Wall)
             ) {
-                data.getCharacter().setTilePos(newPos);
+                data.getActor().setTilePos(newPos);
                 drawer.redraw(canvas, direction);
                 logger.info("Character now is on " + data.getTilemap().getMatrix()[newPos.row][newPos.col] + " tile");
             }

@@ -1,8 +1,7 @@
 package com.vsu.visual.drawers;
 
-import com.vsu.actor.model.Character;
+import com.vsu.actor.model.Actor;
 import com.vsu.visual.CharacterControls;
-import com.vsu.visual.ViewConfig;
 import com.vsu.visual.VisualData;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,12 +14,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CharacterDrawer extends Drawer {
     @NonNull
-    private Character character;
+    private Actor actor;
     private MainMapDrawer mapDrawer;
 
-    public CharacterDrawer(VisualData data, Character character) {
+    public CharacterDrawer(VisualData data, Actor actor) {
         super(data);
-        this.character = character;
+        this.actor = actor;
     }
 
     @Override

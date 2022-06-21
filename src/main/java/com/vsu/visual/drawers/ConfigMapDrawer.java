@@ -26,8 +26,8 @@ public class ConfigMapDrawer extends Drawer {
         }
         data.getConfigCanvas().getGraphicsContext2D().setFill(Color.RED);
         data.getConfigCanvas().getGraphicsContext2D().fillRect(
-                data.getConfigCanvas().getWidth() / data.getTilemap().getRowSize() * data.getCharacter().getTilePos().col,
-                data.getConfigCanvas().getHeight() / data.getTilemap().getColSize() * data.getCharacter().getTilePos().row,
+                data.getConfigCanvas().getWidth() / data.getTilemap().getRowSize() * data.getActor().getTilePos().col,
+                data.getConfigCanvas().getHeight() / data.getTilemap().getColSize() * data.getActor().getTilePos().row,
                 data.getConfigCanvas().getWidth() / data.getTilemap().getRowSize(),
                 data.getConfigCanvas().getHeight() / data.getTilemap().getColSize()
         );

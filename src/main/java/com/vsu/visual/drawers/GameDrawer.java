@@ -1,17 +1,11 @@
 package com.vsu.visual.drawers;
 
-import com.vsu.service.GameService;
-import com.vsu.visual.ViewConfig;
+import com.vsu.game.GameService;
 import com.vsu.visual.VisualData;
-import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -29,9 +23,9 @@ public class GameDrawer extends Drawer {
 
         GameService gameService = new GameService();
 
-        data.setCharacter(gameService.initCharacter(data.getTilemap()));
+        data.setActor(gameService.initCharacter(data.getTilemap()));
 
-        CharacterDrawer drawer = new CharacterDrawer(data,data.getCharacter());
+        CharacterDrawer drawer = new CharacterDrawer(data,data.getActor());
         drawer.draw();
 
         data.getCurrentPane().getChildren().add(data.getCharacterCanvas());
