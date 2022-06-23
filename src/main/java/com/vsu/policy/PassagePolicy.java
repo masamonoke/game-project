@@ -16,7 +16,7 @@ public class PassagePolicy {
             return weight + 1;
         }
 
-        if (destination.getType() == TileType.Forest) {
+        if (destination.getType() == TileType.Grass) {
             return weight + 5;
         }
 

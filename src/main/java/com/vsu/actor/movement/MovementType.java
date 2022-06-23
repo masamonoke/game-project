@@ -1,10 +1,12 @@
 package com.vsu.actor.movement;
 
 public enum MovementType {
-    Attack,
     HeavyAttack,
     LightAttack,
+    Shot,
     Jump,
     Dash,
-    Crouch
+    Crouch,
+    Finisher,
+    Action
 }

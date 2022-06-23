@@ -1,27 +1,37 @@
 package com.vsu.actor.movement;
 
 
+import com.vsu.actor.effect.TemporaryStatusEffect;
+import com.vsu.actor.model.Actor;
 import com.vsu.actor.model.ActorMobilityState;
-import com.vsu.actor.model.Character;
 
 import static com.vsu.App.logger;
 
 
 public class Jump extends Movement {
     public Jump() {
-        type = MovementType.Jump;
+        price = 3;
+        movementType = MovementType.Jump;
     }
 
     @Override
-    public MovementResult apply(Character character) {
+    public MovementResult apply(Actor actor) {
         //возможно добавить увеличение урона и увеличить область урона
-        logger.info(character + " jumped");
+        var effect = new TemporaryStatusEffect();
+        effect.setDamageBonus(actor.getPhysicalDamage() +
+                actor.getStrength() + actor.getAgility() + actor.getModificationDamage());
+        log(actor);
         movementResult = MovementResult
                 .builder()
+                .movementType(movementType)
                 .newActorMobilityState(ActorMobilityState.Jumping)
-                .damageBonus(character.getPhysicalDamage() +
-                        character.getStrength() + character.getAgility() + character.getModificationDamage())
+                .statusEffect(effect)
                 .build();
         return movementResult;
+    }
+
+    @Override
+    public void log(Actor actor) {
+        logger.info(actor + " jumped");
     }
 }

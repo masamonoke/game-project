@@ -1,10 +1,9 @@
 package com.vsu.map;
 
-import com.vsu.utils.GeometryUtils;
-import com.vsu.utils.MathUtils;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Vector2Test {
     @Test
@@ -40,24 +39,45 @@ class Vector2Test {
     }
 
     @Test
-    void addTest() {
+    void addValueTest() {
         var v = new Vector2(-76, 12);
         var a = 55;
         assertEquals(v.add(a), new Vector2(-21, 67));
+    }
+
+    @Test
+    void addVectorTest() {
+        var v = new Vector2(-76, 12);
         var b = new Vector2(24, -1);
         assertEquals(v.add(b), new Vector2(-52, 11));
     }
 
-    //TODO: дописать для всех квадрантов
     @Test
-    void getMiddlePointFromDistanceAndEndPointTest() {
-        var cursor = new Vector2(10, 12);
-        var v = new Vector2(1, 2);
-        int distance = 2;
-        var res = cursor.getMiddlePointFromDistanceAndEndPoint(cursor, distance);
-        var angleRadian1 = MathUtils.round(GeometryUtils.findVectorAngleByPoint(cursor), 1);
-        var angleRadian2 = MathUtils.round(GeometryUtils.findVectorAngleByPoint(res), 1);
-        assertEquals(angleRadian1, angleRadian2);
+    void subtractVectorTest() {
+        var v = new Vector2(-76, 12);
+        var b = new Vector2(24, -1);
+        assertEquals(v.subtract(b), new Vector2(-100, 13));
     }
 
+    @Test
+    void divideValueTest() {
+        var v = new Vector2(-76, 12);
+        var a = 2;
+        assertEquals(v.divide(a), new Vector2(-38, 6));
+    }
+
+    @Test
+    void multiplyValueTest() {
+        var v = new Vector2(-76, 12);
+        var a = 2;
+        var b = v.divide(a);
+        assertEquals(b.multiply(a), v);
+    }
+
+    @Test
+    void lessThanValueTest() {
+        var v = new Vector2(-76, 12);
+        var a = 13;
+        assertTrue(v.lessThan(a));
+    }
 }

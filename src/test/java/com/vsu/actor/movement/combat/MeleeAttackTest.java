@@ -1,15 +1,20 @@
 package com.vsu.actor.movement.combat;
 
-import com.vsu.actor.model.Character;
+import com.vsu.actor.interfaces.HumanEquipable;
+import com.vsu.actor.interfaces.HumanWalkable;
+import com.vsu.actor.interfaces.KnightMoveable;
+import com.vsu.actor.model.Actor;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+//todo: добавить тестов
 class MeleeAttackTest {
     @Test
     void attackTest() {
-        var char1 = new Character(  "char1");
-        var char2 = new Character("char2");
+        var char1 = new Actor( "char1", new HumanEquipable(), new HumanWalkable(1), new KnightMoveable());
+        var char2 = new Actor("char2", new HumanEquipable(), new HumanWalkable(1), new KnightMoveable());
         char1.setPos(52, 43);
         char1.setCursorPos(52, 60);
         char2.setPos(52, 46);

@@ -20,7 +20,7 @@ public class TileTypeGenerator {
         if (a < 0.1) {
             return TileType.Swamp;
         } else if (a <= 0.5) {
-            return TileType.Forest;
+            return TileType.Grass;
         } else
             return TileType.Lake;
 

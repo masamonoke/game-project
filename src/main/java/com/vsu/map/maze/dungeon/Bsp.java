@@ -2,11 +2,11 @@ package com.vsu.map.maze.dungeon;
 
 import java.util.*;
 
-import static com.vsu.map.model.TilemapDirection2D.*;
+import static com.vsu.map.model.TilemapDirection2D.Position;
 
 public class Bsp {
 
-    //TODO: почему то может вернуть пустой список
+    //todo: в зависимости от параметров может вернуть пустой список
     public List<BoundingBox> runBsp(BoundingBox spaceToSplit, int minWidth, int minHeight) {
         Queue<BoundingBox> roomsQueue = new LinkedList<>();
         List<BoundingBox> roomsList = new ArrayList<>();
