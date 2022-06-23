@@ -74,12 +74,13 @@ public class MenuDrawer extends Drawer {
     }
 
     ViewController controller = new ViewController();
-    GenerateRoom generateRoom = new GenerateRoom();
+
     private void initButtons() {
         Button startButton = new Button();
         drawButton(startButton, data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOn.png"),
                 data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOff.png"), data.getWindowWidth()/2.4, data.getWindowHeight()/3.5);
         startButton.onActionProperty().set(actionEvent -> {
+            GenerateRoom generateRoom = new GenerateRoom(data.getTilemap(), 8, 8, 4, 4);
             controller.generateMaze(MazeGenAlgorithms.RandomWalk, data.getTilemap());
             GameDrawer drawer = new GameDrawer(data);
             generateRoom.generate(data.getTilemap());

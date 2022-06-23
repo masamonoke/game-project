@@ -8,6 +8,17 @@ import javafx.scene.Node;
 import java.util.*;
 
 public class GenerateRoom {
+    Tilemap tilemap;
+    int maxHeightRoom, maxWidthRoom, minHeightRoom, minWidthRoom;
+
+    public GenerateRoom (Tilemap tilemap, int maxHeightRoom, int maxWidthRoom, int minHeightRoom, int minWidthRoom) {
+        this.tilemap = tilemap;
+        this.maxHeightRoom = maxHeightRoom;
+        this.maxWidthRoom = maxWidthRoom;
+        this.minWidthRoom = minWidthRoom;
+        this.minHeightRoom = minHeightRoom;
+    }
+
     public void generate(Tilemap tilemap) {
         Random random = new Random();
         int width = tilemap.getColSize();
@@ -17,7 +28,7 @@ public class GenerateRoom {
         Tree tree = new Tree(new NodeTree(new int[] {2, 2}, new int[] {width - 2, height - 2}, null));
         List<Room> list = new ArrayList<>();
 
-        createRoom(tilemap, tree.getHead(), list, height/5, width/5, height/20, width/20);
+        createRoom(tilemap, tree.getHead(), list, maxHeightRoom, maxWidthRoom, minHeightRoom, minWidthRoom);
         NodeTree temp = tree.getHead();
         while (temp.getLeft() != null) {
             temp = temp.getLeft();
