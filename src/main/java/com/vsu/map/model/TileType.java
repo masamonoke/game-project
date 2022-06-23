@@ -4,7 +4,7 @@ public enum TileType {
     Wall,
     Pavement,
     Room,
-    Forest,
+    Grass,
     Lake,
     Swamp,
     Way,
