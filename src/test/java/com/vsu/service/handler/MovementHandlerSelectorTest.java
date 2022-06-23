@@ -10,13 +10,12 @@ import com.vsu.actor.movement.Jump;
 import com.vsu.actor.movement.combat.Action;
 import com.vsu.actor.movement.combat.HeavyAttack;
 import com.vsu.actor.movement.combat.LightAttack;
-import com.vsu.game.Game;
+import com.vsu.service.game.Game;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MovementHandlerSelectorTest {
     @Test
@@ -74,7 +73,8 @@ class MovementHandlerSelectorTest {
         selector.handle(actor, new Jump(), game);
         selector.handle(actor, new HeavyAttack(), game);
         selector.handle(actor, new HeavyAttack(), game);
-        assertTrue(game.getComboTree().getCur().isLeaf());
+        selector.handle(actor, new LightAttack(), game);
+        assertTrue(actor.getComboTree().getCur().isLeaf());
     }
 
     @Test
@@ -85,7 +85,7 @@ class MovementHandlerSelectorTest {
         selector.handle(actor, new Crouch(), game);
         selector.handle(actor, new LightAttack(), game);
         selector.handle(actor, new LightAttack(), game);
-        assertTrue(game.getComboTree().getCur().isLeaf());
+        assertFalse(actor.getComboTree().getCur().isLeaf());
     }
 
     @Test
@@ -96,7 +96,7 @@ class MovementHandlerSelectorTest {
         selector.handle(actor, new LightAttack(), game);
         selector.handle(actor, new HeavyAttack(), game);
         selector.handle(actor, new LightAttack(), game);
-        assertTrue(game.getComboTree().getCur().isLeaf());
+        assertTrue(actor.getComboTree().getCur().isLeaf());
     }
 
     @Test
@@ -107,7 +107,7 @@ class MovementHandlerSelectorTest {
         selector.handle(actor, new HeavyAttack(), game);
         selector.handle(actor, new HeavyAttack(), game);
         selector.handle(actor, new LightAttack(), game);
-        assertTrue(game.getComboTree().getCur().isLeaf());
+        assertTrue(actor.getComboTree().getCur().isLeaf());
     }
 
     @Test
@@ -118,6 +118,6 @@ class MovementHandlerSelectorTest {
         selector.handle(actor, new Action(), game);
         selector.handle(actor, new HeavyAttack(), game);
         selector.handle(actor, new LightAttack(), game);
-        assertTrue(game.getComboTree().getCur().isLeaf());
+        assertFalse(actor.getComboTree().getCur().isLeaf());
     }
 }

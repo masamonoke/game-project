@@ -4,7 +4,7 @@ import com.vsu.actor.model.Actor;
 import com.vsu.actor.movement.Dash;
 import com.vsu.actor.movement.Movement;
 import com.vsu.actor.movement.MovementResult;
-import com.vsu.game.Game;
+import com.vsu.service.game.Game;
 import com.vsu.utils.GeometryUtils;
 
 public class DashHandler extends MovementHandler {
@@ -18,14 +18,14 @@ public class DashHandler extends MovementHandler {
         if (!(movement instanceof Dash)) {
             return null;
         }
-        if (!movement.takeResources(actor)) {
+        var result = actor.getComboTree().traverseTree(movement, actor);
+        if (result == null) {
             return null;
         }
-        var result = game.getComboTree().traverseTree(movement, actor);
         actor.applyEffect(result.getStatusEffect());
         MovementResult finisher = null;
-        if (game.getComboTree().getFinisher() != null) {
-            finisher = game.getComboTree().finisher(actor);
+        if (actor.getComboTree().getFinisher() != null) {
+            finisher = actor.getComboTree().finisher(actor);
             actor.applyEffect(finisher.getStatusEffect());
         }
         var step = ((actor.getStrength() + actor.getAgility()) * 2);

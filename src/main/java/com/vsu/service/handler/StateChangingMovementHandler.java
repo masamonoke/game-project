@@ -5,7 +5,7 @@ import com.vsu.actor.movement.Crouch;
 import com.vsu.actor.movement.Jump;
 import com.vsu.actor.movement.Movement;
 import com.vsu.actor.movement.MovementResult;
-import com.vsu.game.Game;
+import com.vsu.service.game.Game;
 
 public class StateChangingMovementHandler extends MovementHandler {
 
@@ -18,14 +18,14 @@ public class StateChangingMovementHandler extends MovementHandler {
         if (!(movement instanceof Jump) && !(movement instanceof Crouch)) {
             return null;
         }
-        if (!movement.takeResources(actor)) {
+        var result = actor.getComboTree().traverseTree(movement, actor);
+        if (result == null) {
             return null;
         }
-        var result = game.getComboTree().traverseTree(movement, actor);
         actor.applyEffect(result.getStatusEffect());
         MovementResult finisher = null;
-        if (game.getComboTree().getFinisher() != null) {
-            finisher = game.getComboTree().finisher(actor);
+        if (actor.getComboTree().getFinisher() != null) {
+            finisher = actor.getComboTree().finisher(actor);
             actor.applyEffect(finisher.getStatusEffect());
         }
         return AfterMovementDrawData.builder().movementResult(result).finisherResult(finisher).build();

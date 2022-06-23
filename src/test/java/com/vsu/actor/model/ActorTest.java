@@ -5,8 +5,8 @@ import com.vsu.actor.interfaces.HumanEquipable;
 import com.vsu.actor.interfaces.HumanWalkable;
 import com.vsu.actor.interfaces.KnightMoveable;
 import com.vsu.actor.movement.combat.LightAttack;
-import com.vsu.game.Game;
 import com.vsu.map.Vector2;
+import com.vsu.service.game.Game;
 import com.vsu.service.handler.MovementHandlerSelector;
 import org.junit.jupiter.api.Test;
 

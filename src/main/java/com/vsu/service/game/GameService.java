@@ -1,4 +1,4 @@
-package com.vsu.game;
+package com.vsu.service.game;
 
 import com.vsu.actor.model.Actor;
 import com.vsu.map.model.Tile;

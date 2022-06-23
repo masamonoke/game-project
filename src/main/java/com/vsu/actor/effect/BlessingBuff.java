@@ -16,7 +16,7 @@ public class BlessingBuff extends TemporaryStatusEffect {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        this.stats = statusEffect.stats;
+        this.stats = new Stats(statusEffect.stats);
         this.effectTime = statusEffect.effectTime;
         this.damageBonus = statusEffect.damageBonus;
         this.applyTime = System.currentTimeMillis();

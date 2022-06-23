@@ -4,7 +4,7 @@ import com.vsu.actor.model.Actor;
 import com.vsu.actor.movement.Movement;
 import com.vsu.actor.movement.MovementResult;
 import com.vsu.actor.movement.combat.MeleeAttack;
-import com.vsu.game.Game;
+import com.vsu.service.game.Game;
 import com.vsu.utils.MathUtils;
 
 import java.util.ArrayList;
@@ -22,13 +22,13 @@ public class MeleeAttackHandler extends MovementHandler {
         if (!(movement instanceof MeleeAttack)) {
             return null;
         }
-        if (!movement.takeResources(actor)) {
+        var result = actor.getComboTree().traverseTree(movement, actor);
+        if (result == null) {
             return null;
         }
-        var result = game.getComboTree().traverseTree(movement, actor);
         MovementResult finisher = null;
-        if (game.getComboTree().getFinisher() != null) {
-            finisher = game.getComboTree().finisher(actor);
+        if (actor.getComboTree().getFinisher() != null) {
+            finisher = actor.getComboTree().finisher(actor);
         }
         var diedActors = new ArrayList<Actor>();
         var damagedActors = new ArrayList<Actor>();
