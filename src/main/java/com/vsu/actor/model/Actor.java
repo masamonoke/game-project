@@ -7,6 +7,8 @@ import com.vsu.actor.interfaces.Equipable;
 import com.vsu.actor.interfaces.Moveable;
 import com.vsu.actor.interfaces.Walkable;
 import com.vsu.actor.movement.Movement;
+import com.vsu.actor.movement.MovementResult;
+import com.vsu.actor.movement.combat.combo.ComboTree;
 import com.vsu.map.Vector2;
 import lombok.*;
 
@@ -76,7 +78,7 @@ public class Actor implements Walkable, Moveable, Equipable {
     private TemporaryStatusEffect temporaryEffect;
     protected int physicalDamage;
     protected int magicalDamage;
-    //TODO: расчитывать текущий тайл по pos: Vector2, либо убрать совсем
+    //TODO: расчитывать текущий тайл по pos:Vector2, либо убрать совсем
     protected Position tilePos;
     protected Vector2 pos;
     protected Vector2 cursorPos;
@@ -104,7 +106,7 @@ public class Actor implements Walkable, Moveable, Equipable {
         cursorPos = new Vector2(pos.x + 10, pos.y + 10);
         exp = 0;
         stats = new Stats(0, 1, 1, 1, 1, 1, 1);
-        defaultStats = stats.deepCopy();
+        defaultStats = new Stats(stats);
         modificationDamage = 1;
         criticalChance = 0.3;
         this.equipable = equipable;
@@ -222,7 +224,7 @@ public class Actor implements Walkable, Moveable, Equipable {
 
     public void applyEffect(TemporaryStatusEffect temporaryEffect) {
         if (this.temporaryEffect == null) {
-            this.temporaryEffect = temporaryEffect.deepCopy();
+            this.temporaryEffect = new TemporaryStatusEffect(temporaryEffect);
         } else {
             temporaryEffect.add(this.temporaryEffect);
         }
@@ -235,7 +237,7 @@ public class Actor implements Walkable, Moveable, Equipable {
         if (curTime - temporaryEffect.getApplyTime() <= temporaryEffect.getEffectTime()) {
             return;
         }
-        stats = defaultStats.deepCopy();
+        stats = new Stats(defaultStats);
         temporaryEffect = null;
     }
 
@@ -252,13 +254,18 @@ public class Actor implements Walkable, Moveable, Equipable {
     }
 
     @Override
-    public void move(Movement movement, Actor actor) {
-        moveable.move(movement, actor);
+    public MovementResult move(Movement movement, Actor actor) {
+        return moveable.move(movement, actor);
     }
 
     @Override
     public void restoreResources(Actor actor) {
         moveable.restoreResources(actor);
+    }
+
+    @Override
+    public ComboTree getComboTree() {
+        return moveable.getComboTree();
     }
 
     @Override

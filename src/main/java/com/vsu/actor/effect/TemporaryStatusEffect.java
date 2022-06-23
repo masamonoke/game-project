@@ -1,6 +1,5 @@
 package com.vsu.actor.effect;
 
-import com.vsu.ShallowCopyable;
 import com.vsu.actor.model.Actor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,11 +9,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class TemporaryStatusEffect implements ShallowCopyable {
+public class TemporaryStatusEffect {
     protected Stats stats;
     protected int effectTime;
     protected int damageBonus;
     protected long applyTime;
+
+    public TemporaryStatusEffect(TemporaryStatusEffect copyFrom) {
+        stats = new Stats(copyFrom.stats);
+        effectTime = copyFrom.effectTime;
+        damageBonus = copyFrom.damageBonus;
+        applyTime = copyFrom.applyTime;
+    }
 
     public TemporaryStatusEffect() {
         stats = new Stats();
@@ -43,17 +49,5 @@ public class TemporaryStatusEffect implements ShallowCopyable {
         stats.add(other.stats);
         effectTime = other.effectTime;
         damageBonus += other.damageBonus;
-    }
-
-    @Override
-    public TemporaryStatusEffect deepCopy() {
-        var stats = new Stats();
-        stats = this.stats.deepCopy();
-        var effect = new TemporaryStatusEffect();
-        effect.setStats(stats);
-        effect.setEffectTime(this.effectTime);
-        effect.setDamageBonus(this.damageBonus);
-        effect.setApplyTime(this.applyTime);
-        return effect;
     }
 }

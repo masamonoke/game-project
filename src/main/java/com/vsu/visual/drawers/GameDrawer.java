@@ -1,6 +1,6 @@
 package com.vsu.visual.drawers;
 
-import com.vsu.game.GameService;
+import com.vsu.service.game.GameService;
 import com.vsu.visual.VisualData;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
