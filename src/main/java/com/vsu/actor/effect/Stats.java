@@ -1,6 +1,5 @@
 package com.vsu.actor.effect;
 
-import com.vsu.ShallowCopyable;
 import lombok.*;
 
 @Getter
@@ -9,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode
-public class Stats implements ShallowCopyable {
+public class Stats {
     private int toxic;
     private int strength;
     private int intelligence;
@@ -17,6 +16,16 @@ public class Stats implements ShallowCopyable {
     private int noise;
     private int trickery;
     private int speed;
+
+    public Stats(Stats copyFrom) {
+        toxic = copyFrom.toxic;
+        strength = copyFrom.strength;
+        intelligence = copyFrom.intelligence;
+        agility = copyFrom.agility;
+        noise = copyFrom.noise;
+        trickery = copyFrom.trickery;
+        speed = copyFrom.speed;
+    }
 
     public Stats add(Stats other) {
         toxic += other.getToxic();
@@ -27,17 +36,5 @@ public class Stats implements ShallowCopyable {
         trickery += other.getTrickery();
         speed += other.getSpeed();
         return this;
-    }
-
-    public Stats deepCopy() {
-        var stats = new Stats();
-        stats.toxic = this.toxic;
-        stats.strength = this.strength;
-        stats.intelligence = this.intelligence;
-        stats.agility = this.agility;
-        stats.noise = this.noise;
-        stats.trickery = this.trickery;
-        stats.speed = this.speed;
-        return stats;
     }
 }

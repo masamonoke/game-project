@@ -19,13 +19,9 @@ public class ComboTree {
     private final String filename;
     private long time;
 
+    //только для тестов и прототипа
     public ComboTree() throws IOException {
-        root = new TreeNode(null);
-        cur = root;
-        filename = "src/main/resources/combat/updatedComboset.txt";
-        CombosetParser parser = new CombosetParser();
-        parser.readUpdatedComboTreeFromFile(filename, root);
-        time = -1;
+        this("src/main/resources/combat/updatedComboset.txt");
     }
 
     public ComboTree(String filename) throws IOException {
@@ -71,11 +67,16 @@ public class ComboTree {
                 }
             }
             cur = found;
-            return found.getData().apply(actor);
+            var m = found.getData();
+            var res = actor.move(m, actor);
+            if (res == null) {
+                cur = root;
+            }
+            return res;
         } else {
             logger.info("Combo chain is interrupted");
             cur = root;
-            return movement.apply(actor);
+            return actor.move(movement, actor);
         }
     }
 

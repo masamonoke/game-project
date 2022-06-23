@@ -47,7 +47,7 @@ class TemporaryStatusEffectTest {
     void deepCopyTest() {
         var stats = new Stats(1, 1, 1, 1, 1, 1, 1);
         var effect1 = new TemporaryStatusEffect(stats, 5000, 10, 100000000);
-        var effect2 = effect1.deepCopy();
+        var effect2 = new TemporaryStatusEffect(effect1);
         assertEquals(effect1.getEffectTime(), effect2.getEffectTime());
         assertEquals(effect1.getDamageBonus(), effect2.getDamageBonus());
         assertEquals(effect1.getStats(), effect2.getStats());

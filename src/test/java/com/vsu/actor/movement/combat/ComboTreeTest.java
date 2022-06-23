@@ -3,6 +3,7 @@ package com.vsu.actor.movement.combat;
 import com.vsu.actor.interfaces.HumanEquipable;
 import com.vsu.actor.interfaces.HumanWalkable;
 import com.vsu.actor.interfaces.KnightMoveable;
+import com.vsu.actor.interfaces.MasterMoveable;
 import com.vsu.actor.model.Actor;
 import com.vsu.actor.movement.Crouch;
 import com.vsu.actor.movement.Jump;
@@ -19,51 +20,79 @@ class ComboTreeTest {
     @Test
     void traverseTest1() throws IOException {
        var c = new ComboTree();
-       var character = new Actor("Lolek", new HumanEquipable(), new HumanWalkable(1), new KnightMoveable());
+       var character = new Actor("Lolek", new HumanEquipable(), new HumanWalkable(1), new MasterMoveable());
        var lightAttack = new LightAttack();
        c.traverseTree(lightAttack, character);
        c.traverseTree(lightAttack, character);
        c.traverseTree(lightAttack, character);
        c.finisher(character);
        assertTrue(c.getCur().isLeaf());
-
-
-       c.traverseTree(new Jump(), character);
-       c.traverseTree(new HeavyAttack(), character);
-       c.traverseTree(new HeavyAttack(), character);
-       c.finisher(character);
-       assertTrue(c.getCur().isLeaf());
-
-       c.traverseTree(new LightAttack(), character);
-       c.traverseTree(new LightAttack(), character);
-       c.traverseTree(new Jump(), character);
-       c.finisher(character);
-       assertFalse(c.getCur().isLeaf());
-
-       c.traverseTree(new Crouch(), character);
-       c.traverseTree(new LightAttack(), character);
-       c.traverseTree(new LightAttack(), character);
-       c.finisher(character);
-       assertTrue(c.getCur().isLeaf());
-       c.traverseTree(new HeavyAttack(), character);
-       assertFalse(c.getCur().isLeaf());
     }
 
     @Test
     void traverseTest2() throws IOException {
         var c = new ComboTree();
-        var character = new Actor("Lolek", new HumanEquipable(), new HumanWalkable(1), new KnightMoveable());
+        var character = new Actor("Lolek", new HumanEquipable(), new HumanWalkable(1), new MasterMoveable());
+
+        c.traverseTree(new Jump(), character);
+        c.traverseTree(new HeavyAttack(), character);
+        c.traverseTree(new HeavyAttack(), character);
+        c.finisher(character);
+        assertTrue(c.getCur().isLeaf());
+    }
+
+    @Test
+    void traverseTest3() throws IOException {
+        var c = new ComboTree();
+        var character = new Actor("Lolek", new HumanEquipable(), new HumanWalkable(1), new MasterMoveable());
+        c.traverseTree(new LightAttack(), character);
+        c.traverseTree(new LightAttack(), character);
+        c.traverseTree(new Jump(), character);
+        c.finisher(character);
+        assertFalse(c.getCur().isLeaf());
+    }
+
+    @Test
+    void traverseTest4() throws IOException {
+        var c = new ComboTree();
+        var character = new Actor("Lolek", new HumanEquipable(), new HumanWalkable(1), new MasterMoveable());
+
+        c.traverseTree(new Crouch(), character);
+        c.traverseTree(new LightAttack(), character);
+        c.traverseTree(new LightAttack(), character);
+        c.finisher(character);
+        assertTrue(c.getCur().isLeaf());
+        c.traverseTree(new HeavyAttack(), character);
+        assertFalse(c.getCur().isLeaf());
+    }
+
+    @Test
+    void traverseTest5() throws IOException {
+        var c = new ComboTree();
+        var character = new Actor("Lolek", new HumanEquipable(), new HumanWalkable(1), new MasterMoveable());
         c.traverseTree(new Action(), character);
         c.traverseTree(new HeavyAttack(), character);
         c.traverseTree(new LightAttack(), character);
         c.finisher(character);
         assertTrue(c.getCur().isLeaf());
+    }
+
+    @Test
+    void traverseTest6() throws IOException {
+        var c = new ComboTree();
+        var character = new Actor("Lolek", new HumanEquipable(), new HumanWalkable(1), new MasterMoveable());
 
         c.traverseTree(new LightAttack(), character);
         c.traverseTree(new LightAttack(), character);
         c.traverseTree(new HeavyAttack(), character);
         c.finisher(character);
         assertTrue(c.getCur().isLeaf());
+    }
+
+    @Test
+    void traverseTest7() throws IOException {
+        var c = new ComboTree();
+        var character = new Actor("Lolek", new HumanEquipable(), new HumanWalkable(1), new MasterMoveable());
 
         c.traverseTree(new LightAttack(), character);
         c.traverseTree(new LightAttack(), character);
@@ -72,7 +101,6 @@ class ComboTreeTest {
         c.finisher(character);
         assertTrue(c.getCur().isLeaf());
     }
-
 
     @Test
    void traverseTestNullMovement() throws IOException {

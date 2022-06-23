@@ -2,7 +2,7 @@ package com.vsu.actor.interfaces;
 
 import com.vsu.actor.model.Actor;
 import com.vsu.actor.movement.combat.LightAttack;
-import com.vsu.game.Game;
+import com.vsu.service.game.Game;
 import com.vsu.service.handler.MovementHandlerSelector;
 import org.junit.jupiter.api.Test;
 

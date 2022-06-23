@@ -4,7 +4,7 @@ import com.vsu.actor.model.Actor;
 import com.vsu.actor.movement.Movement;
 import com.vsu.actor.movement.MovementResult;
 import com.vsu.actor.movement.combat.Action;
-import com.vsu.game.Game;
+import com.vsu.service.game.Game;
 
 //todo: переделать в соответствии с добавленными экшенами
 public class ActionMovementHandler extends MovementHandler {
@@ -17,10 +17,13 @@ public class ActionMovementHandler extends MovementHandler {
         if (!(movement instanceof Action)) {
             return null;
         }
-        var result = game.getComboTree().traverseTree(movement, actor);
+        var result = actor.getComboTree().traverseTree(movement, actor);
+        if (result == null) {
+            return null;
+        }
         MovementResult finisher = null;
-        if (game.getComboTree().getFinisher() != null) {
-            finisher = game.getComboTree().finisher(actor);
+        if (actor.getComboTree().getFinisher() != null) {
+            finisher = actor.getComboTree().finisher(actor);
             actor.applyEffect(finisher.getStatusEffect());
         }
         return AfterMovementDrawData.builder().movementResult(result).finisherResult(finisher).build();
