@@ -11,6 +11,7 @@ public class MazeGenerationFactory {
         strategies = new ArrayList<>();
         strategies.add(new BacktrackingStrategy());
         strategies.add(new RandomWalkStrategy());
+        strategies.add(new WithoutWallsMap());
     }
 
     public MazeGenerationStrategy getStrategy(MazeGenAlgorithms strategy) {
