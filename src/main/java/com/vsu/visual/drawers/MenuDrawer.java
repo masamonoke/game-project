@@ -19,8 +19,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.vsu.map.maze.Direction.down;
-import static com.vsu.map.maze.Direction.up;
+import static com.vsu.map.maze.Direction.*;
 
 @RequiredArgsConstructor
 public class MenuDrawer extends Drawer {
@@ -75,7 +74,10 @@ public class MenuDrawer extends Drawer {
 
     ViewController controller = new ViewController();
 
-    GenerateRiver generateRiver = new GenerateRiver(up, down);
+    GenerateRiver generateRiverUp = new GenerateRiver(up);
+    GenerateRiver generateRiverDown = new GenerateRiver(down);
+    GenerateRiver generateRiverRight = new GenerateRiver(right);
+    GenerateRiver generateRiverLeft = new GenerateRiver(left);
     //TODO: переделать под относительное расположение
     private void initButtons() {
         Button startButton = new Button();
@@ -83,10 +85,16 @@ public class MenuDrawer extends Drawer {
                 data.getImageCache().getImageByPath("/img/menu/buttons/buttonStartOff.png"), 250, 200);
         startButton.onActionProperty().set(actionEvent -> {
             GenerateRoom generateRoom = new GenerateRoom(data.getTilemap(), 8, 8, 4, 4);
-            //controller.generateMaze(MazeGenAlgorithms.RandomWalk, data.getTilemap());
-            //generateRoom.generate(data.getTilemap());
-            controller.generateMaze(MazeGenAlgorithms.WithoutWallsMap, data.getTilemap());
-            generateRiver.generate(data.getTilemap());
+            controller.generateMaze(MazeGenAlgorithms.RandomWalk, data.getTilemap());
+            generateRoom.generate(data.getTilemap());
+            //controller.generateMaze(MazeGenAlgorithms.WithoutWallsMap, data.getTilemap());
+            /*
+            generateRiverUp.generate(data.getTilemap());
+            generateRiverLeft.generate(data.getTilemap());
+            generateRiverRight.generate(data.getTilemap());
+            generateRiverDown.generate(data.getTilemap());
+
+             */
 
 
             GameDrawer drawer = new GameDrawer(data);
